@@ -1,0 +1,376 @@
+  @import "newfont.css";	
+  
+  
+  /* Wrap */
+  
+  .wrap{
+	text-align: left;
+	overflow-wrap: break-word;
+	word-break: break-all;
+	white-space: normal;
+}
+  
+  
+  /* For add , edit page  */
+  label{
+ 
+  font-size:11px;
+  font-weight: 1200;
+  
+  }
+  
+  input{
+  	font-weight: bold;
+  }
+  
+ 
+  
+  /* For side bar */
+  
+  #module{
+  font-family:'Montserrat', sans-serif;
+     font-weight:600;
+  
+  }
+  
+  
+  /*  For buttons(add, edit and delete)*/
+  
+  #aedbtn{
+   font-family:'Quicksand', sans-serif;
+       font-weight:800;
+
+  }
+  
+  .breadcrumb-item{
+  
+       font-weight:800;
+          font-size: 14px;
+       
+  }
+ 
+/*  dashboard buttons*/
+
+#dashboard{
+	font-family:'Muli', sans-serif;
+       font-weight:800;
+          font-size: 18px;
+	
+}
+
+/* Main Header */
+
+.content-header>h5{font-family:'Muli', sans-serif;font-size: 20px}
+
+
+
+
+
+
+/*  css for Buttons*/
+
+
+
+
+.add{
+	 font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #428bca;
+       border-color: #428bca;
+       /* width:7%; */
+}
+
+.add:hover{
+	background-color: #505bda;
+}
+
+.addbasic{
+	 font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #428bca;
+       border-color: #428bca;
+}
+
+.addbasic:hover{
+	background-color: #505bda;
+}
+
+.addedit{
+	 font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #ff4d00;
+       border-color: #ff4d00; 
+}
+.addedit:hover{
+	     	background-color: #ff5200;
+}
+
+.edit{
+	 font-family:'Montserrat', sans-serif;
+       font-weight:800;
+/*         width:7%; */
+      
+}
+
+.editbasic{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+        background-color: #f0ad4e;
+       border-color:#f0ad4e; 
+       color: black;     
+}
+.editbasic:hover{
+	  background-color: #f3c623;
+}
+
+.delete{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+  
+     
+}
+
+.prints{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+/*        width:7%; */
+        background-color: purple;
+       border-color: purple;
+}
+.prints:hover{
+	    background-color: #6a097d;
+	
+}
+
+.submit{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: green;
+       border-color: green;
+      
+}
+.submit:hover{
+	background-color: #004a2f;
+}
+
+.back{
+	
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #17a2b8;
+       border-color: #17a2b8;
+
+}
+.back:hover{
+	       background-color: #6886c5;
+	
+}
+
+
+
+.itemspec{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #be9fe1;
+       border-color: #be9fe1;
+       color:black;
+}
+.itemspec:hover{
+	background-color: #916dd5;
+}
+
+.parameter{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #6c757d;
+       border-color:#6c757d;
+
+}
+.parameter:hover{
+	background-color: black;
+}
+
+.viewall{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #937d14;
+       border-color:#937d14 ;
+       width:7%;
+}
+.viewall:hover{
+	       background-color: #7d5a5a;
+	
+}
+
+.preview{
+		font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #d291bc;
+       border-color:#d291bc; 
+       width:7%;
+       color:black;
+}
+.preview:hover{
+	       background-color: #957dad;
+	
+}
+
+.revoke{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #b80d57;
+       border-color:#b80d57; 
+       width:7%;
+}
+.revoke:hover{
+	background-color: #d63447;
+}
+
+.roleform{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #30475e;
+       border-color:#30475e; 
+}
+.roleform:hover{
+	  background-color: #522d5b;	
+}
+
+.reset{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+       background-color: #fa163f;
+       border-color:#fa163f; 
+       width:7%;
+}
+.reset:hover{
+	       background-color: #ff5d6c;
+	}
+	
+.upload{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+        width:7%;
+        background-color:#32407b;
+       border-color:#32407b; 
+       
+}
+.upload:hover{
+	        background-color: #151965;
+	}
+	
+.cfcommit{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+        background-color:#216583;
+       border-color:#216583; 
+}
+.cfcommit:hover{
+	        background-color:#293462;
+}
+
+.cfdemand{
+	font-family:'Montserrat', sans-serif;
+       font-weight:800;
+        background-color:#3161a3;
+       border-color:#3161a3; 
+}
+.cfdemand:hover{
+	        background-color:#293462;
+}
+
+.pdfreport{
+	  
+        background-color:#eb4559;
+       border-color:#eb4559; 
+	height:2.5rem;
+}
+.pdfreport:hover{
+	        background-color:#dd2c00;
+	}
+	
+.excelreport{
+	
+        background-color:#0c9463;
+       border-color:#0c9463; 
+	height:2.5rem;
+}
+.excelreport:hover{
+	        background-color:#1f6650;
+	}
+
+.view{
+	background-color: #0275d8;
+	color:white;
+}
+
+/* form footer */
+
+.form-footer{
+	background: #D3CCE3;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	padding:25px;
+}
+
+/* Icon Button for list */
+
+.icon-btn{
+	padding: 4px 8px;
+	font-weight:600;
+	text-transform: uppercase;
+}
+
+
+.icon-btn:hover
+{
+	box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+}
+
+/* Dashboard Icon */
+
+.size{
+	font-size: x-large;
+	color: #1C6DD0;
+}
+
+/* Form Details */
+
+.form-group label{
+	font-size: 15px !important;
+	font-weight: 700 ;
+}
+
+/* data table */
+
+.table{
+	border-radius: 5px !important
+}
+
+.table thead,tbody{
+	font-family: 'Lato',sans-serif;
+    line-height: 1;
+}
+
+.table thead tr{
+	background: #457fca;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to bottom, #5691c8, #457fca);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to bottom, #363795, #457fca); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+    /* background-color:#1572A1; */
+   /*  background: #1e3c72;  
+	background: -webkit-linear-gradient(to bottom, #2a5298, #1e3c72);  
+	background: linear-gradient(to bottom, #2a5298, #1e3c72);  */
+    
+}
+
+.table td, .table th {
+    padding: 0.5rem;
+}
+
+.raise {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+

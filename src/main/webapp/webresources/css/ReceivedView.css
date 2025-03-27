@@ -1,0 +1,470 @@
+.previewTable td {
+  font-size: 16px !important;
+}
+
+.previewTable th {
+  color: #114A86;
+  font-size:16px;
+}
+
+.form-group {
+ flex: 1 0 auto;
+ margin-bottom:0px;
+}
+
+.form-group DakPrev {
+    flex: 1 0 auto;
+    margin-bottom: 0px;
+}
+
+.color-box {
+display: inline-block;
+width: 15px;
+height: 15px;
+margin-right: 5px;
+}
+
+.facilitators-box {
+background-color: #FF8C00;
+}
+
+.seekresponse-box {
+background-color: #990000;
+}
+
+.markersinfo-box {
+background-color: #0073FF;
+}
+
+.markersaction-box {
+background-color: #0B6623;
+}
+
+.DakLinkAttach-btn{
+ color:#0089c7;
+ background-color:white;
+ font-size:14px;
+ margin-left: 120px;
+}
+
+.downloadDakMainReplyAttachTable {
+  width: 350px;
+
+}
+
+.downloadDakMainReplyAttachTable td {
+    padding: 0.2rem;
+    border:none;
+}
+
+.downloadsubDakReplyAttachTable {
+  width: 350px;
+
+}
+
+.downloadsubDakReplyAttachTable td {
+    padding: 0.2rem;
+    border:none;
+}
+
+.replyAttachWithin-btn{
+ color:#0089c7;
+ background-color:white;
+ font-size:14px;
+}
+
+.replyAttachWithin-btn:hover {
+   color: royalblue;
+  text-decoration: underline;
+}
+
+.DataPart2 {
+    display: inline-block;
+    margin-left: 0px;
+    border:1px solid lightgrey;
+    width:70px;
+    margin-right:8px;
+}
+
+#model-person-header {
+
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #8B0000;
+  text-shadow: 0 1px 0 #fff;
+  padding-top: 10px;
+  float: left; 
+  margin-left:32px;
+}
+
+.replyModAttachTbl-div{
+  float: left; 
+}
+
+.DAKReplysBasedOnReplyId{
+
+box-shadow: rgba(152,152,152, 0.3)0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+border-radius:2px;
+}
+
+.replyedit-click{
+float: right; 
+margin-left:10px;
+margin-top:2px;
+}
+
+.replyforwardforedit-click{
+float: right;
+margin-left:10px;
+margin-top:2px;
+}
+
+.viewmore-click{
+    /* background-color: Transparent !important; */
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    text-align: left !important;
+    color:#1176ab;
+    font-size: 14px;
+    background-color:white;
+}
+.viewmore-click:hover {
+background-color: #f9fcff;
+background-image: linear-gradient(147deg, #f9fcff 0%, #dee4ea 74%);
+
+}
+
+.replyRow {
+ margin-bottom: 0; /* Remove the bottom margin of the .replyRow */
+ margin-right:2px;
+ margin-left:2px;
+ 
+}
+
+.replyremarks-div {
+  color: black;
+  user-select: all;
+  outline: none;
+  height: 51px;
+/*   border: 1px solid grey; */
+  text-align: left;
+  padding-left: 10px;
+  margin-left: 30px;
+  width: 800px !important;
+ float: left; 
+ box-shadow: rgba(14, 30, 37, 0.32) 0px 0px 0px 3px;
+border-radius:3px!important;
+  
+}
+
+.replyremarks-div button,
+.replyremarks-div span {
+  user-select: none;
+}
+
+.downloadReplyAttachTable {
+  width: 350px;
+
+}
+
+.downloadReplyAttachTable td {
+    padding: 0.2rem;
+    border:none;
+}
+
+.DAKCSWReplysBasedOnReplyId{
+
+box-shadow: rgba(152,152,152, 0.3)0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+border-radius:2px;
+}
+
+.replyCSW-div {
+  color: black;
+  user-select: all;
+  outline: none;
+  height: 51px;
+/*   border: 1px solid grey; */
+  text-align: left;
+  padding-left: 10px;
+  margin-left: 30px;
+  width: 800px !important;
+ float: left; 
+ box-shadow: rgba(14, 30, 37, 0.32) 0px 0px 0px 3px;
+border-radius:3px!important;
+  
+}
+
+.replyCSW-div button,
+.replyCSW-div span {
+  user-select: none;
+}
+
+.replyCSWModAttachTbl-div{
+  float: left; 
+}
+
+.downloadReplyCSWAttachTable td {
+    padding: 0.2rem;
+    border:none;
+}
+
+.TblReplyAttachs {
+ display: inline-block;
+   margin-left:0px;
+  
+}
+
+.replyCSWAttachWithin-btn{
+   color:#0089c7;
+ background-color:white;
+ font-size:14px;
+}
+
+.replyCSWAttachWithin-btn:hover {
+   color: royalblue;
+  text-decoration: underline;
+}
+.group1 {
+  margin-left:0px;
+  display: inline-block;
+  max-width: 800px;
+  padding-right:50px;
+}
+
+.pncAttachments-btn{
+	   color:#0089c7;
+	   background-color:white;
+	   font-size:14px;
+	}
+
+.pncAttachments-btn:hover {
+	 color: royalblue;
+	 text-decoration: underline;
+}
+.DAKSeekResponseReplysBasedOnReplyId{
+
+box-shadow: rgba(152,152,152, 0.3)0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+border-radius:2px;
+}
+
+
+details { 
+  margin-bottom: 5px;  
+}
+details  .content {
+background-color:white;
+padding: 0 1rem ;
+align: center;
+border: 1px solid black;
+}
+summary[role=button] {
+  color: black;
+  border: 1px solid black ;
+  border-radius:5px;
+  padding: 0.5rem;
+}
+summary[role=button]:hover
+ {
+color: black;
+border: 1px solid black ;
+background-color: lightblue;
+}
+ summary[role=button]:focus
+{
+color: black;
+border: 1px solid black ;
+background-color: lightblue;
+}
+
+.spacermarker {
+    margin-left: 1720px; 
+}
+
+.spacercsw {
+    margin-left: 1750px; 
+}
+
+.spacerpnc {
+    margin-left: 1715px; 
+}
+.spacerseek{
+margin-left: 1665px; 
+} 
+#sidebarCollapse{
+display:none;
+}
+
+#sidebar{
+display:none;
+}
+
+/* -------TAB SWITCHING CSS START ----- */
+.tabs {
+  position: relative;
+  display: flex;
+  min-height: 500px;
+  border-radius: 8px 8px 0 0;
+  overflow: scroll;
+}
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+.tabby-tab {
+  flex: 1;
+}
+#Sample{
+display:block;
+}
+.tabby-tab label {
+  display: block;
+  box-sizing: border-box;
+  /* tab content must clear this */
+    height: 37px;
+  
+  padding: 5px;
+  text-align: center;
+  background: #114A86;
+  cursor: pointer;
+  transition: background 0.5s ease;
+  color: white;
+  font-size: large;
+}
+
+.tabby-tab label:hover {
+  background: #5488BF ;
+}
+
+.tabby-content {
+  position: absolute;
+  left: 0; bottom: 0; right: 0;
+    top: 40px; 
+  
+  padding: 20px;
+  border-radius: 0 0 8px 8px;
+  background: white;
+  
+  transition: 
+    opacity 0.8s ease,
+    transform 0.8s ease   ;
+    opacity: 0;
+    transform: scale(0.1);
+    transform-origin: top left;
+  
+}
+
+.tabby-content img {
+  float: left;
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+.tabby-tab [type=radio] { display: none; }
+[type=radio]:checked ~ label {
+  background: #5488BF ;
+  z-index: 2;
+}
+
+[type=radio]:checked ~ label ~ .tabby-content {
+  z-index: 1;
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media screen and (max-width: 767px) {
+  .tabs { min-height: 400px;}
+}
+
+@media screen and (max-width: 480px) {
+  .tabs { min-height: 580px; }
+  .tabby-tab label { 
+    height: 60px;
+  }
+  .tabby-content { top: 60px; }
+  .tabby-content img {
+    float: none;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+/* -------TAB SWITCHING CSS END ----- */
+
+
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.buttons {
+    margin: 10%;
+    text-align: center;
+}
+
+.btn-hover {
+    width: 230px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    height: 40px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 20px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-hover.color-1 {
+    background-image: linear-gradient(to right, #25aae1, #40e495, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(49, 196, 190, 0.75);
+}
+
+.btn-hover.color-3 {
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+}
+
+.btn-hover.color-5 {
+    background-image: linear-gradient(to right, #0ba360, #3cba92, #30dd8a, #2bb673);
+    box-shadow: 0 4px 15px 0 rgba(23, 168, 108, 0.75);
+}
+
+.btn-hover.color-7 {
+    background-image: linear-gradient(to right, #6253e1, #852D91, #A3A1FF, #F24645);
+    box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
+}
+.btn-hover.color-8 {
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+.btn-hover.color-9 {
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+.btn-hover.color-10 {
+        background-image: linear-gradient(to right, #ed6ea0, #ec8c69, #f7186a , #FBB03B);
+    box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+.btn-hover.color-11 {
+       background-image: linear-gradient(to right, #eb3941, #f15e64, #e14e53, #e2373f);  box-shadow: 0 5px 15px rgba(242, 97, 103, .4);
+}

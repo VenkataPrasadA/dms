@@ -1,0 +1,200 @@
+hr.new4{
+border: 2.5px solid orange;
+}
+
+hr.new5{
+border: 3px solid #2c4e86;
+margin-top: -1px;
+}
+
+
+.topbar-divider {
+    width: 0;
+    border-right: 1px solid #e3e6f0;
+    height: calc(3.375rem - 2rem);
+    margin-top: 2rem;
+    margin-left: 2rem;
+}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+   height:16px;
+   background-color:#003366;
+
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar li {
+  display: inline-block;
+  margin-left: 20px;
+  position: relative;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.card {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      height: 93%;
+    margin-bottom: 4%;
+}
+
+body{
+	overflow-x:hidden;
+}
+
+
+.img-container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: fit-content;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%)
+}
+
+.img-container:hover .image {
+  opacity: 0.3;
+}
+
+.img-container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  color: #051547;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+
+@media screen and (max-width: 900px){
+
+	.image{
+	opacity: 1;
+  	display: block;
+  	width: 100%;
+  	height: 300px;
+  	transition: .5s ease;
+  	backface-visibility: hidden;
+	}
+
+	.formbox{
+	margin-left: 5px !important;
+	margin-right: 5px !important;
+	}
+	
+	.imgbox{
+	margin-left: 5px !important;
+	margin-right: 5px !important;
+	}
+
+}
+
+@media screen and (min-width : 1020px) and (max-width:1350px){
+	
+	.image{
+	opacity: 1;
+  	display: block;
+  	width: 100%;
+  	height: 300px;
+  	transition: .5s ease;
+  	backface-visibility: hidden;
+	}
+	
+	.second-image{
+	/* display: none !important; */
+	height: 9rem !important;
+	width: 15rem !important;
+	}
+	
+	.first-image{
+	/* display: none !important; */
+	height: 9rem !important;
+	width: 18rem !important;
+	}
+	
+	 .labname{
+		 /* display: none!important;  */
+		 margin: 0px 0px 0px 76px !important;
+    	font-size: 12px !important;
+	} 
+	
+	.title{
+		font-size: 17px;
+	}
+	
+	.btn-group {
+	
+	display: none !important;
+	color: black !important;
+	}
+	
+}	
+	
+@media screen and (min-width:1355px) and (max-width : 1500px) {
+	
+	.image{
+	opacity: 1;
+  	display: block;
+  	width: 100%;
+  	height: 300px;
+  	transition: .5s ease;
+  	backface-visibility: hidden;
+	}
+	
+	.btn-group {
+	
+	display: none !important;
+	color: black !important;
+	}
+		
+	.labname{
+	
+		font-size: 14px !important;
+		font-family:'Montserrat', sans-serif;
+		
+	}	
+	
+	.title{
+		font-size: 23px;
+	}
+
+}
+
+@media screen and (min-width:1505px) and (max-width:2000px){
+		
+		.title{
+		font-size: 26px;
+	}
+	
+}
