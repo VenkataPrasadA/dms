@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -393,7 +393,7 @@ public class DmsController {
 		return "static/MainDashBoard";
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "AdminDashBoard.htm", method = {RequestMethod.GET,RequestMethod.POST})
 	public String AdminDashBoard(HttpServletRequest req, HttpSession ses) throws Exception {
 		logger.info(new Date() +" Inside AdminDashBoard " );
@@ -403,7 +403,7 @@ public class DmsController {
 
 		return "admin/AdminDashBoard";
 	}
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	//@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "MasterDashBoard.htm", method = {RequestMethod.GET,RequestMethod.POST})
 	public String MasterDashBoard(HttpServletRequest req, HttpSession ses) throws Exception {
 		logger.info(new Date() +" Inside MasterDashBoard " );
@@ -413,7 +413,7 @@ public class DmsController {
 		return "master/MasterDashBoard";
 	}
 	
-	@PreAuthorize("hasRole('ROLE_DAK_ADM')")
+	//@PreAuthorize("hasRole('ROLE_DAK_ADM')")
 	@RequestMapping(value = "DakDashBoard.htm", method = {RequestMethod.GET,RequestMethod.POST})
 	public String DakDashBoard(HttpServletRequest req, HttpSession ses) throws Exception {
 		logger.info(new Date() +" Inside DakDashBoard " );

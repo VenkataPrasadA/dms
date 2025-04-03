@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
+import jakarta.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -245,8 +245,14 @@ public class DmsDaoImp  implements DmsDao {
 		public Long LastLoginStampingId(String LoginId) throws Exception {
 			Query query = manager.createNativeQuery(LASTLOGINEMPID);
 			query.setParameter("loginid", LoginId);
-			BigInteger LastLoginStampingId = (BigInteger) query.getSingleResult();
-			return LastLoginStampingId.longValue();
+			 Object result = query.getSingleResult(); 
+			    if (result instanceof BigInteger) {
+			        return ((BigInteger) result).longValue();
+			    } else if (result instanceof Long) {
+			        return (Long) result;
+			    } else {
+			        throw new ClassCastException("Unexpected type: " + result.getClass());
+			    }
 		}
 		
 		@Override

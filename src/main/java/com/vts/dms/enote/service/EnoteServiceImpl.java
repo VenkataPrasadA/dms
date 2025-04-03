@@ -15,16 +15,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -1928,13 +1928,13 @@ public class EnoteServiceImpl implements EnoteService{
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.port", mailAuthentication.getPort());
 		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
 		
 		System.out.println("mailAuthentication.getHost():"+mailAuthentication.getHost());
 		System.out.println("mailAuthentication.getPort():"+mailAuthentication.getPort());
 		System.out.println("mailAuthentication.getUsername():"+mailAuthentication.getUsername());
 		System.out.println("mailAuthentication.getPassword():"+mailAuthentication.getPassword());
-		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+		Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(mailAuthentication.getUsername(),mailAuthentication.getPassword());
 			}
@@ -1993,9 +1993,9 @@ public class EnoteServiceImpl implements EnoteService{
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.port", mailAuthentication.getPort());
 		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
 		
-		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+		Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(mailAuthentication.getUsername(),mailAuthentication.getPassword());
 			}

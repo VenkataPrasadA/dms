@@ -463,15 +463,12 @@ String toDt=(String)request.getAttribute("toDt");
 
 Object[] PopUpCount=(Object[])request.getAttribute("PopUpCount");
 
-System.out.println("PopUpCount:"+PopUpCount[0].toString());
+
 Date frominpuDate=inputDateFormat.parse(frmDt);
 Date toinputDate=inputDateFormat.parse(toDt);
 
 String FromDate=sdf.format(frominpuDate);
 String  toDate=sdf.format(toinputDate);
-
-System.out.println("FromDate:"+FromDate);
-System.out.println("toDate:"+toDate);
 
 String Date=(String)request.getAttribute("Date");
 String Project=(String)request.getAttribute("Project");
@@ -697,7 +694,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
                 <div class="card-block">
                 <h5 class="m-b-15"  style="color:black;"><b>Total DAK</b></h5>
                     <h2 class="text-right"><i class="fa fa-database float-right size" style="font-size: 40px; color: white;"></i></h2>
-                   <p><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;">A : <%=TotalCountData[2] %>&nbsp;&nbsp;&nbsp;&nbsp;     R : <%=TotalCountData[1] %></span></b></p>
+                   <p><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;">A : <%if(TotalCountData!=null && TotalCountData[2]!=null){%><%=TotalCountData[2] %><%} %>&nbsp;&nbsp;&nbsp;&nbsp;     R : <%if(TotalCountData!=null && TotalCountData[1]!=null){%><%=TotalCountData[1] %><%} %></span></b></p>
                 </div>
             </div>
              </a>
@@ -711,7 +708,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
 	<div class="card-block">
 			<h5 class="m-b-15"  style="color:black;"><b>Pending Reply</b></h5>
 		    <h2 class="text-right"><i class="fa fa-clock-o float-right size" style="font-size: 40px; color: white;"></i></h2>
-	    <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(TotalCountData[4]!=null){%><%=TotalCountData[4] %><%}else{%> <%} %></span></b></p>
+	    <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(TotalCountData!=null && TotalCountData[4]!=null){%><%=TotalCountData[4] %><%}else{%> <%} %></span></b></p>
 	</div>
 </div>
 </a>
@@ -723,7 +720,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK Replied</b></h5>
         <h2 class="text-right"><i class="fa fa-reply float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(TotalCountData[5]!=null){%><%=TotalCountData[5] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(TotalCountData!=null && TotalCountData[5]!=null){%><%=TotalCountData[5] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </a>
@@ -736,7 +733,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK P & C DO</b></h5>
         <h2 class="text-right"><i class="fa fa-user-tie float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(TotalCountData[6]!=null){%><%=TotalCountData[6] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(TotalCountData!=null && TotalCountData[6]!=null){%><%=TotalCountData[6] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </a>
@@ -750,7 +747,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK Director</b></h5>
         <h2 class="text-right"><i class="fa fa-user-shield float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(TotalCountData[7]!=null){%><%=TotalCountData[7] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(TotalCountData!=null && TotalCountData[7]!=null){%><%=TotalCountData[7] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </a>
@@ -764,7 +761,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK Closed</b></h5>
         <h2 class="text-right"><i class="fa-solid fa-door-closed float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(TotalCountData[8]!=null){%><%=TotalCountData[8] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(TotalCountData!=null && TotalCountData[8]!=null){%><%=TotalCountData[8] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </a>
@@ -845,7 +842,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
                 <div class="card-block">
                 <h5 class="m-b-15"  style="color:black;"><b>Total DAK</b></h5>
                     <h2 class="text-right"><i class="fa fa-database float-right size" style="font-size: 40px; color: white;"></i></h2>
-                   <p><b><span class="f-left" style="color:black; font-size: 18px; font-weight: 800;" >A : <%=GroupCardsCount[2] %>&nbsp;&nbsp;&nbsp;&nbsp;     R : <%=GroupCardsCount[1] %></span></b></p>
+                   <p><b><span class="f-left" style="color:black; font-size: 18px; font-weight: 800;" >A : <%if(GroupCardsCount!=null && GroupCardsCount[2]!=null){%><%=GroupCardsCount[2] %><%} %>&nbsp;&nbsp;&nbsp;&nbsp;     R : <%if(GroupCardsCount!=null && GroupCardsCount[1]!=null){%><%=GroupCardsCount[1] %><%} %></span></b></p>
                 </div>
             </div>
             </div>
@@ -855,7 +852,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
    						 <div class="card-block">
      				<h5 class="m-b-15"  style="color:black;"><b>DAK Pending Reply</b></h5>
      			   <h2 class="text-right"><i class="fa fa-clock-o float-right size" style="font-size: 40px; color: white;"></i></h2>
-    			    <p class="m-b-0" ><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(GroupCardsCount[4]!=null){%><%=GroupCardsCount[4] %><%}else{%> <%} %></span></b></p>
+    			    <p class="m-b-0" ><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(GroupCardsCount!=null && GroupCardsCount[4]!=null){%><%=GroupCardsCount[4] %><%}else{%> <%} %></span></b></p>
    				 </div>
 			</div>
 </div>
@@ -865,7 +862,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK Replied</b></h5>
         <h2 class="text-right"><i class="fa fa-reply float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(GroupCardsCount[5]!=null){%><%=GroupCardsCount[5] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(GroupCardsCount!=null && GroupCardsCount[5]!=null){%><%=GroupCardsCount[5] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </div>
@@ -875,7 +872,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK P & C </b></h5>
         <h2 class="text-right"><i class="fa fa-user-tie float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(GroupCardsCount[6]!=null){%><%=GroupCardsCount[6] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(GroupCardsCount!=null && GroupCardsCount[6]!=null){%><%=GroupCardsCount[6] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </div>
@@ -885,7 +882,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK Director</b></h5>
         <h2 class="text-right"><i class="fa fa-user-shield float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(GroupCardsCount[7]!=null){%><%=GroupCardsCount[7] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"> <%if(GroupCardsCount!=null && GroupCardsCount[7]!=null){%><%=GroupCardsCount[7] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </div>
@@ -895,7 +892,7 @@ String toDateParameter = sdf.format(java.sql.Date.valueOf(toDateSevenDaysAhead))
     <div class="card-block">
      <h5 class="m-b-15"  style="color:black;"><b>DAK Closed</b></h5>
         <h2 class="text-right"><i class="fa-solid fa-door-closed float-right size" style="font-size: 40px; color: white;"></i></h2>
-        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(GroupCardsCount[8]!=null){%><%=GroupCardsCount[8] %><%}else{%> <%} %></span></b></p>
+        <p class="m-b-0"><b><span class="f-left"  style="color:black; font-size: 18px; font-weight: 800;"><%if(GroupCardsCount!=null && GroupCardsCount[8]!=null){%><%=GroupCardsCount[8] %><%}else{%> <%} %></span></b></p>
     </div>
 </div>
 </div>
@@ -1712,11 +1709,11 @@ new Chart(document.getElementById("myChart"), {
 anychart.onDocumentReady(function () {
 	  // create 3D pie chart with dynamic data
 	 var chart = anychart.pie3d([
-        {x: "Distributed", value: <%=TotalCountData[3]%>},
-        {x: "Replied", value: <%=TotalCountData[5]%>},
-        {x: "Replied By P&C", value: <%=TotalCountData[10]%>},
-        {x: "Approved", value: <%=TotalCountData[9]%>},
-        {x: "Closed", value: <%=TotalCountData[8]%>}
+        {x: "Distributed", value: <%if(TotalCountData!=null &&TotalCountData[3]!=null){%><%=TotalCountData[3]%><%}%>},
+        {x: "Replied", value: <%if(TotalCountData!=null &&TotalCountData[5]!=null){%><%=TotalCountData[5]%><%}%>},
+        {x: "Replied By P&C", value: <%if(TotalCountData!=null &&TotalCountData[10]!=null){%><%=TotalCountData[10]%><%}%>},
+        {x: "Approved", value: <%if(TotalCountData!=null &&TotalCountData[9]!=null){%><%=TotalCountData[9]%><%}%>},
+        {x: "Closed", value: <%if(TotalCountData!=null &&TotalCountData[8]!=null){%><%=TotalCountData[8]%><%}%>}
     ]);
 
 	 chart
@@ -1883,7 +1880,7 @@ new Chart("myThirdChart", {
 }); --%>
 
 var xValues = ["Initiated", "Distributed", "Replied", "P&C DO", "Approved" ,"Closed"];
-var yValues = [<%=TotalCountData[0]%>, <%=TotalCountData[3]%>, <%=TotalCountData[5]%>, <%=TotalCountData[6]%>, <%=TotalCountData[7]%>,<%=TotalCountData[8]%>];
+var yValues = [<%if(TotalCountData!=null &&TotalCountData[0]!=null){%><%=TotalCountData[0]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[3]!=null){%><%=TotalCountData[3]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[5]!=null){%><%=TotalCountData[5]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[6]!=null){%><%=TotalCountData[6]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[7]!=null){%><%=TotalCountData[7]%><%}%>,<%if(TotalCountData!=null &&TotalCountData[8]!=null){%><%=TotalCountData[8]%><%}%>];
 var barColors = ["rgb(0, 123, 255)","rgb(185, 28, 214)", "rgb(0, 0, 255)","rgb(161, 118, 39)","rgb(34, 139, 34)","rgb(249, 99, 2)"];
 
 new Chart("mysecondChart", {
@@ -1912,6 +1909,7 @@ new Chart("mysecondChart", {
 
     var dataArray = [];
     <%
+    if(multiValueMap!=null){
     for (Map.Entry<String, List<Object[]>> entry : multiValueMap.entrySet()) {
         String key = entry.getKey();
         List<Object[]> valueList = entry.getValue();
@@ -1934,6 +1932,7 @@ new Chart("mysecondChart", {
                 dataArray.push(dataRow);
                 <%
         }
+    }
     }
     %>
 
@@ -2035,6 +2034,7 @@ new Chart("mysecondChart", {
 
 	    var dataArray = [];
 	    <%
+	    if(multiGroupValueMap!=null){
 	    for (Map.Entry<String, List<Object[]>> entry : multiGroupValueMap.entrySet()) {
 	        String key = entry.getKey();
 	        List<Object[]> valueList = entry.getValue();
@@ -2055,6 +2055,7 @@ new Chart("mysecondChart", {
 	                dataArray.push(dataRow);
 	                <%
 	        }
+	    }
 	    }
 	    %>
 

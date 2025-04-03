@@ -18,17 +18,17 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Future;
 
-import javax.mail.Address;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
+import jakarta.mail.Address;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
+import jakarta.mail.internet.MimeMultipart;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,8 +48,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.vts.dms.DateTimeFormatUtil;
 import com.vts.dms.controller.CustomJavaMailSender;
 import com.vts.dms.dak.dao.DakDao;
-import com.vts.dms.dak.dao.DakMailRepo;
-import com.vts.dms.dak.dao.DakMailSentRepo;
 import com.vts.dms.dak.dto.DakAddDto;
 import com.vts.dms.dak.dto.DakAssignDto;
 import com.vts.dms.dak.dto.DakAssignReplyDto;
@@ -124,15 +122,10 @@ public class DakServiceImpl  implements DakService{
     @Autowired
     DmsDao dmsdao;
     
-    @Autowired
-    private DakMailRepo repo;
     
     @Autowired
     private Environment env;
 	
-    @Autowired
-    private DakMailSentRepo sentRepo;
-
 	@Override
 	public List<Object[]> SourceList() throws Exception {
 		
@@ -849,84 +842,6 @@ public static int saveFile1(Path uploadPath, String fileName, MultipartFile mult
 	}
 
 	@Override
-	public long DakMailInsert(List<MailDto> mailDto,String userName) throws Exception {
-	    long result=0;
-		for(MailDto dto:mailDto){
-		DakMail mail=new DakMail();
-	    mail.setSubject(dto.getSubject());
-	    mail.setAddressFrom(dto.getAddressFrom()[0].toString());
-	    for(Address addr: dto.getAddressRecieptant()) {
-	    	mail.setAddressRecieptant((mail.getAddressRecieptant()!=null?mail.getAddressRecieptant()+", ":"") +addr.toString());	
-	    } 
-	    mail.setMessageId(dto.getMessageId());
-	    mail.setRecievedDate(sdf1.format(dto.getRecievedDate()));
-	    mail.setMailType(dto.getMailType());
-	    mail.setIsMarked("N");
-	    mail.setCreatedBy(userName);
-	    mail.setCreatedDate(sdf1.format(new Date()));
-	    try {
-	    	result=repo.save(mail).getDakMailId();
-	    	for(int i=0;i<dto.getAttachment().size();i++) {
-	    	DakMailAttach attach=new DakMailAttach();
-	    	attach.setDakMailId(result);
-	    	attach.setAttachPath(dto.getAttachment().get(i));
-	    	dao.insertDakAttach(attach);
-	    	}
-	    }catch (Exception e) {
-			// TODO: handle exception
-		}
-	    }
-		return result;
-	}
-
-	@Override
-	public List<DakMail> DakMailList(Date date, String type) throws Exception 
-	{
-		return repo.findByRecievedDateAndType(new java.sql.Date(date.getTime()),type);
-	}
-	
-	@Override
-	public List<DakMailSent> DakMailSentList(Date date, String type) throws Exception {
-		
-		return sentRepo.findByRecievedDateAndType(new java.sql.Date(date.getTime()),type);
-	}
-
-	@Override
-	public long DakMailSentInsert(List<MailDto> mailDto, String userName) throws Exception {
-		long result=0;
-		for(MailDto dto:mailDto){
-		DakMailSent mail=new DakMailSent();
-	    mail.setSubject(dto.getSubject());
-	    mail.setAddressFrom(dto.getAddressFrom()[0].toString());
-	    mail.setAddressRecieptant(dto.getAddressRecieptant()[0].toString());
-	    mail.setMessageId(dto.getMessageId());
-	    mail.setSentDate(new java.sql.Date(dto.getRecievedDate().getTime()));
-	    mail.setMailType(dto.getMailType());
-	    mail.setIsMarked("N");
-	    mail.setCreatedBy(userName);
-	    mail.setCreatedDate(sdf1.format(new Date()));
-	    try {
-	    	result=sentRepo.save(mail).getDakMailSentId();
-	    	for(int i=0;i<dto.getAttachment().size();i++) {
-	    	DakMailSentAttach attach=new DakMailSentAttach();
-	    	attach.setDakMailSentId(result);
-	    	attach.setAttachPath(dto.getAttachment().get(i));
-	    	dao.insertDakSentAttach(attach);
-	    	}
-	    }catch (Exception e) {
-			e.printStackTrace();
-		}
-	    }
-		return result;
-	}
-	
-	@Override
-	public DakMail findByDakMailId(String dakMailId) throws Exception
-	{
-		return repo.findByDakMailId(Long.parseLong(dakMailId));
-	}
-
-	@Override
 	public List<Object[]> dakReceivedList(String fromDate ,String toDate,String statusValue,long EmpId,String Username) throws Exception {
 		return dao.dakReceivedList(fromDate,toDate,statusValue,EmpId,Username);
 	}
@@ -1348,9 +1263,9 @@ public static int saveFile1(Path uploadPath, String fileName, MultipartFile mult
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.port", mailAuthentication.getPort());
 		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
 		
-		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+		Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(mailAuthentication.getUsername(),mailAuthentication.getPassword());
 			}
@@ -1411,9 +1326,9 @@ public static int saveFile1(Path uploadPath, String fileName, MultipartFile mult
 		properties.put("mail.smtp.starttls.enable", "true");
 		properties.put("mail.smtp.port", mailAuthentication.getPort());
 		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
 		
-		Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+		Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(mailAuthentication.getUsername(),mailAuthentication.getPassword());
 			}

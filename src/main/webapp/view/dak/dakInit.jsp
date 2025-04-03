@@ -1494,11 +1494,7 @@ $('#ReceiptDate').daterangepicker({
 	"singleDatePicker" : true,
 	"linkedCalendars" : false,
 	"showCustomRangeLabel" : true,
-	<%if (dakmail != null) {%>
-		"startDate" : new Date('<%=sdf.format(sdtf.parse(dakmail.getRecievedDate()))%>'),
-	<%} else {%>
-		"startDate" : new Date(),
-	<%}%>
+	"startDate" : new Date(),
 	"maxDate" : new Date(),
 	"cancelClass" : "btn-default",
 	showDropdowns : true,
@@ -1511,11 +1507,7 @@ $('#NewReceiptDate').daterangepicker({
 	"singleDatePicker" : true,
 	"linkedCalendars" : false,
 	"showCustomRangeLabel" : true,
-	<%if (dakmail != null) {%>
-		"startDate" : new Date('<%=sdf.format(sdtf.parse(dakmail.getRecievedDate()))%>'),
-	<%} else {%>
-		"startDate" : new Date(),
-	<%}%>
+	"startDate" : new Date(),
 	"maxDate" : new Date(),
 	"cancelClass" : "btn-default",
 	showDropdowns : true,

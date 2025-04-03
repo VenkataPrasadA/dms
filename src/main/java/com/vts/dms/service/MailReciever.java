@@ -14,35 +14,34 @@ import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.mail.BodyPart;
-import javax.mail.Flags;
-import javax.mail.Folder;
-import javax.mail.Header;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Part;
-import javax.mail.Session;
-import javax.mail.Store;
-import javax.mail.UIDFolder;
-import javax.mail.Flags.Flag;
-import javax.mail.event.MessageCountAdapter;
-import javax.mail.event.MessageCountEvent;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMultipart;
-import javax.mail.search.ComparisonTerm;
-import javax.mail.search.FlagTerm;
-import javax.mail.search.ReceivedDateTerm;
+import jakarta.mail.BodyPart;
+import jakarta.mail.Flags;
+import jakarta.mail.Folder;
+import jakarta.mail.Header;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.Multipart;
+import jakarta.mail.Part;
+import jakarta.mail.Session;
+import jakarta.mail.Store;
+import jakarta.mail.UIDFolder;
+import jakarta.mail.Flags.Flag;
+import jakarta.mail.event.MessageCountAdapter;
+import jakarta.mail.event.MessageCountEvent;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMultipart;
+import jakarta.mail.search.ComparisonTerm;
+import jakarta.mail.search.FlagTerm;
+import jakarta.mail.search.ReceivedDateTerm;
 
+import org.eclipse.angus.mail.imap.IMAPFolder;
+import org.eclipse.angus.mail.imap.IdleManager;
+import org.eclipse.angus.mail.imap.SortTerm;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.core.env.Environment;
 
 import com.itextpdf.styledxmlparser.jsoup.Jsoup;
-import com.sun.mail.imap.IMAPFolder;
-import com.sun.mail.imap.IdleManager;
-import com.sun.mail.imap.SortTerm;
-import com.vts.dms.dak.dao.DakMailRepo;
 import com.vts.dms.dak.dto.MailConnectDto;
 import com.vts.dms.dak.dto.MailDto;
 
@@ -142,7 +141,7 @@ public class MailReciever {
 	            dto.setMessageId(uf.getUID(msg));
 		        dto.setSubject(msg.getSubject());
 		        dto.setAttachment(downloadAttachments(msg,connectDto.getPath(),dto.getMessageId(),dto.getMailType()));
-		        //javax.mail.internet.MimeMultipart msger=(javax.mail.internet.MimeMultipart)msg.getContent();
+		        //jakarta.mail.internet.MimeMultipart msger=(jakarta.mail.internet.MimeMultipart)msg.getContent();
 		        dto.setRecievedDate(msg.getReceivedDate());
 		        dto.setAddressFrom(msg.getFrom());
 		        dto.setAddressRecieptant(msg.getAllRecipients());

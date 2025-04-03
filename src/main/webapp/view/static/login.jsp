@@ -765,9 +765,9 @@ String ContactNo=(String)request.getAttribute("ContactNo");
 		  <section id="page" class="body-wrapper clearfix" style="">
 		    <div class="support-row clearfix" id="swapper-border" style="">
 		    <div class="marquee-container" onmouseover="stopMarquee()" onmouseout="startMarquee()">
-        <marquee behavior="scroll" direction="left" scrollamount="10" id="marquee">
+       <!--  <marquee behavior="scroll" direction="left" scrollamount="10" id="marquee">
             <p style="font-size: 22px; color: white;">SMS Abbreviation  :  DAK SMS will be sent every morning at 7:30 AM  ,  P : Total Dak Pending,  U : Total Dak Urgent,  T : ToDay Dak Pending  and  D : Total Dak Delay </p>
-        </marquee>
+        </marquee> -->
     </div>
 		      	<div class="widget-guide clearfix">
 		        </div>

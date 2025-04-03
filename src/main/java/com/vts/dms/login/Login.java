@@ -1,7 +1,7 @@
 package com.vts.dms.login;
 
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

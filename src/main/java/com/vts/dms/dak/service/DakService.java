@@ -69,11 +69,6 @@ public interface DakService {
 	public List<Object[]> getReplyAttachDetails(long replyid,long empId ,String type) throws Exception;
 	public Object[] DakReplyAttachmentData(String DakReplyAttachmentId) throws Exception;
 	public int DeleteReplyAttachment(String DakAttachmentId) throws Exception;
-	public long DakMailInsert(List<MailDto> mailDto,String userName) throws Exception;
-	public List<DakMail> DakMailList(Date date,String type) throws Exception;
-	public List<DakMailSent> DakMailSentList(Date date,String type) throws Exception;
-	public long DakMailSentInsert(List<MailDto> mailDto,String userName) throws Exception;
-	public DakMail findByDakMailId(String dakMailId) throws Exception;
 	public List<Object[]> dakReceivedList(String fromDate ,String toDate,String statusValue,long EmpId,String Username) throws Exception;
 	public List<Object[]> dakPendingReplyList(String fromDate ,String toDate,String StatusValue,long EmpId,String Username, String lettertypeid, String priorityid, String sourcedetailid, String sourceId, String projectType, String projectId, String dakMemberTypeId, String employeeId) throws Exception;
    public Object[] dakReceivedView(long empId, long dakId) throws Exception;

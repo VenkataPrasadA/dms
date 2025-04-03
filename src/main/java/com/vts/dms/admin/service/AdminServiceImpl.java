@@ -33,6 +33,7 @@ import com.vts.dms.admin.dto.UserManageAdd;
 import com.vts.dms.admin.model.FormRole;
 import com.vts.dms.admin.model.FormRoleAccess;
 import com.vts.dms.admin.model.dakFeedbackAttach;
+import com.vts.dms.cfg.ReversibleEncryptionAlg;
 import com.vts.dms.login.Login;
 import com.vts.dms.login.RoleRepository;
 import com.vts.dms.admin.model.DakHandingOver;
@@ -47,12 +48,15 @@ public class AdminServiceImpl implements AdminService {
 	AdminDao dao;
 	@Autowired
 	RoleRepository roleRepository;
-	@Autowired
-	BCryptPasswordEncoder encoder;
+	
 	
 	@Autowired
     private Environment env;
 	
+	private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
+	@Autowired
+	ReversibleEncryptionAlg rea;
 	//new change
 	
 	@Override

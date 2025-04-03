@@ -1,9 +1,9 @@
 <%@page import="com.vts.dms.dak.model.DakMailSentAttach"%>
 <%@page import="com.vts.dms.dak.model.DakMailSent"%>
-<%@page import="javax.mail.internet.MimeMultipart"%>
-<%@page import="javax.mail.BodyPart"%>
-<%@page import="javax.mail.internet.ContentType"%>
-<%@page import="javax.mail.MessagingException"%>
+<%@page import="jakarta.mail.internet.MimeMultipart"%>
+<%@page import="jakarta.mail.BodyPart"%>
+<%@page import="jakarta.mail.internet.ContentType"%>
+<%@page import="jakarta.mail.MessagingException"%>
 <%@page import="com.vts.dms.dak.dto.MailDto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.*,java.text.SimpleDateFormat"%>

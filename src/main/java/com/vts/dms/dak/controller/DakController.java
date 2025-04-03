@@ -23,9 +23,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -125,8 +125,8 @@ public class DakController {
 		try {
 			String dakMailId =  req.getParameter("dakMailId");
 			if(dakMailId!=null) {
-				DakMail dakmail =service.findByDakMailId(dakMailId);
-				req.setAttribute("DakMail",dakmail);
+				//DakMail dakmail =service.findByDakMailId(dakMailId);
+				//req.setAttribute("DakMail",dakmail);
 			}
 		    String LabCode = (String) ses.getAttribute("LabCode");
 			req.setAttribute("SourceList",service.SourceList());
@@ -1153,7 +1153,7 @@ public class DakController {
 			connect.setMailDate(new Date());
 		}
 			List<MailDto> mailAll=mr.mail(connect);
-			service.DakMailInsert(mailAll,req.getUserPrincipal().getName());
+			//service.DakMailInsert(mailAll,req.getUserPrincipal().getName());
 		    redir.addAttribute("dt",date);
 			return "redirect:/MailIntList.htm";
 		}
@@ -1179,7 +1179,7 @@ public class DakController {
 			connect.setMailDate(new Date());
 		}
 		List<MailDto> mailAll=mr.mail(connect);
-		service.DakMailSentInsert(mailAll,req.getUserPrincipal().getName());
+		//service.DakMailSentInsert(mailAll,req.getUserPrincipal().getName());
 		    redir.addAttribute("dt",date);
 			return "redirect:/SentIntList.htm";
 		}
@@ -1206,7 +1206,7 @@ public class DakController {
 		
 		List<MailDto> mailAll=mr.mail(connect);
 		
-		service.DakMailInsert(mailAll,req.getUserPrincipal().getName());
+		//service.DakMailInsert(mailAll,req.getUserPrincipal().getName());
 	    redir.addAttribute("dt",date);
 		return "redirect:/MailExtList.htm";
 
@@ -1215,7 +1215,7 @@ public class DakController {
 		@RequestMapping(value = "MailIntList.htm" , method = {RequestMethod.GET,RequestMethod.POST})
 		public String MailIntList(HttpSession ses ,HttpServletRequest req) throws Exception {
 		  String date=req.getParameter("dt");
-	      req.setAttribute("MailList",service.DakMailList(date!=null?sdf.parse(date):new Date(),"I"));
+	      //req.setAttribute("MailList",service.DakMailList(date!=null?sdf.parse(date):new Date(),"I"));
 	      req.setAttribute("dt",date!=null?date:sdf.format(new Date()));
 			return "mail/MailIntList";
 
@@ -1224,7 +1224,7 @@ public class DakController {
 		@RequestMapping(value = "MailExtList.htm" , method = {RequestMethod.GET,RequestMethod.POST})
 		public String MailExtList(HttpSession ses ,HttpServletRequest req) throws Exception {
 		  String date=req.getParameter("dt");
-	      req.setAttribute("MailList",service.DakMailList(date!=null?sdf.parse(date):new Date(),"E"));
+	     // req.setAttribute("MailList",service.DakMailList(date!=null?sdf.parse(date):new Date(),"E"));
 	      req.setAttribute("dt",date!=null?date:sdf.format(new Date()));
 			return "mail/MailExtList";
 
@@ -1312,7 +1312,7 @@ public class DakController {
 		@RequestMapping(value = "SentIntList.htm" , method = {RequestMethod.GET,RequestMethod.POST})
 		public String SentIntList(HttpSession ses ,HttpServletRequest req) throws Exception {
 		  String date=req.getParameter("dt");
-	      req.setAttribute("SentList",service.DakMailSentList(date!=null?sdf.parse(date):new Date(),"I"));
+	     // req.setAttribute("SentList",service.DakMailSentList(date!=null?sdf.parse(date):new Date(),"I"));
 	      req.setAttribute("dt",date!=null?date:sdf.format(new Date()));
 			return "mail/SentIntList";
 

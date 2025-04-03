@@ -3,7 +3,7 @@ package com.vts.dms.dak.dto;
 import java.util.Date;
 import java.util.List;
 
-import javax.mail.Address;
+import jakarta.mail.Address;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

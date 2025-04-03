@@ -10,14 +10,14 @@ import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.mail.AuthenticationFailedException;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import jakarta.mail.AuthenticationFailedException;
+import jakarta.mail.Message;
+import jakarta.mail.MessagingException;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeMessage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -92,11 +92,11 @@ public class CustomJavaMailSender  {
     					// enable authentication
     					properties.put("mail.smtp.auth", "true");
     					// SSL Factory
-    					properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    					properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
     				    
     					//properties.put("mail.smtp.starttls.enable", "true");
 
-    				    Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+    				    Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
     						// override the getPasswordAuthentication
     						// method
     						protected PasswordAuthentication getPasswordAuthentication() {
@@ -186,11 +186,11 @@ public class CustomJavaMailSender  {
     					// enable authentication
     					properties.put("mail.smtp.auth", "true");
     					// SSL Factory
-    					//properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+    					//properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
     				    
     					properties.put("mail.smtp.starttls.enable", "true");
 
-    				    Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+    				    Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
     						// override the getPasswordAuthentication
     						// method
     						protected PasswordAuthentication getPasswordAuthentication() {
@@ -278,11 +278,11 @@ public class CustomJavaMailSender  {
 			// enable authentication
 			properties.put("mail.smtp.auth", "true");
 			// SSL Factory
-			properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
 		    
 			//properties.put("mail.smtp.starttls.enable", "true");
 
-		    Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+		    Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
 				// override the getPasswordAuthentication
 				// method
 				protected PasswordAuthentication getPasswordAuthentication() {
@@ -361,11 +361,11 @@ public class CustomJavaMailSender  {
 			// enable authentication
 			properties.put("mail.smtp.auth", "true");
 			// SSL Factory
-			//properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+			//properties.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
 		    
 			properties.put("mail.smtp.starttls.enable", "true");
 
-		    Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+		    Session session = Session.getDefaultInstance(properties, new jakarta.mail.Authenticator() {
 				// override the getPasswordAuthentication
 				// method
 				protected PasswordAuthentication getPasswordAuthentication() {

@@ -1,6 +1,6 @@
 <%@page import="com.vts.dms.DateTimeFormatUtil"%>
 <%@page import="org.apache.logging.log4j.core.pattern.EqualsIgnoreCaseReplacementConverter"%>
-<%@page import="javax.persistence.criteria.CriteriaBuilder.In"%>
+<%@page import="jakarta.persistence.criteria.CriteriaBuilder.In"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List" %>

@@ -1,6 +1,6 @@
 package com.vts.dms.login;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
