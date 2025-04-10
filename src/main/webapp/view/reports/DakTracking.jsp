@@ -623,12 +623,10 @@ String RedirFromCommon = (String) request.getAttribute("redirectVal");
 					</div>
 <%} %>					
 
-<%-- <%if(obj[24]!=null && ("DD".equalsIgnoreCase(Status) || "DA".equalsIgnoreCase(Status) || "DR".equalsIgnoreCase(Status)|| "RM".equalsIgnoreCase(Status) || "RP".equalsIgnoreCase(Status) || "FP".equalsIgnoreCase(Status) || "AP".equalsIgnoreCase(Status)  || "DC".equalsIgnoreCase(Status))){ %>				
+<%if(obj[24]!=null){ %>				
 						<div class="timeline-row">
 						<div class="timeline-time">
-						<%System.out.println("obj[24]:"+obj[24]); %>
 						<%if(obj[24]!=null){  
-							System.out.println("inside");							
 						 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
                               Date date = inputFormat.parse(obj[24].toString());
         
@@ -636,15 +634,42 @@ String RedirFromCommon = (String) request.getAttribute("redirectVal");
 					        String outputDateString = outputFormat.format(date);
 					        %>
 							<div class="form-inline" style="margin-top: -0.5rem;"><span style="font-size: 17px;font-weight: 600"><%=outputDateString %></span></div>
-							<%} System.out.println("outside");%>
+							<%} %>
 							
 						</div>
 						<div class="timeline-dot green-one-bg"></div>
 							<div class="timeline-content" >
-							<h6  style="background-color:#b91cd6;" >DAK Assigned By &nbsp;/&nbsp;<span id="AssignedByFullName"></span></h6>
+							<h6  style="background-color:#b91cd6;" >DAK Assigned Members &nbsp;</h6>
+							<ol id="AssignedMembers" style="margin: 0px; padding: 6px">
+								 <!-- It will get updated by ajax call -->
+							</ol>
 						</div>
 					</div>
-<%} %>	 --%>
+<%} %>	 
+
+
+ <%if(obj[25]!=null){ %>				
+						<div class="timeline-row">
+						<div class="timeline-time">
+						<%if(obj[25]!=null){  
+						 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+                              Date date = inputFormat.parse(obj[25].toString());
+        
+					        DateFormat outputFormat = new SimpleDateFormat("MMM dd, yyyy, h:mm a");
+					        String outputDateString = outputFormat.format(date);
+					        %>
+							<div class="form-inline" style="margin-top: -0.5rem;"><span style="font-size: 17px;font-weight: 600"><%=outputDateString %></span></div>
+							<%}%>
+						</div>
+						<div class="timeline-dot green-one-bg"></div>
+							<div class="timeline-content" >
+							<h6  style="background-color:#b91cd6;" >DAK SeekResponse Members &nbsp;</h6>
+							<ol id="SeekResponseMembers" style="margin: 0px; padding: 6px">
+								 <!-- It will get updated by ajax call -->
+							</ol>
+						</div>
+					</div>
+<%} %>	
 
 <!--  Only if closing auhority is P  -->
 <%if( obj[20]!=null && "P".equalsIgnoreCase(obj[20].toString()) && !"RM".equalsIgnoreCase(Status) && ("RP".equalsIgnoreCase(Status) || "FP".equalsIgnoreCase(Status)  || "AP".equalsIgnoreCase(Status)  || "DC".equalsIgnoreCase(Status) )){ %>													
@@ -938,6 +963,159 @@ if(DakDetails!=null){
 	 });/*Ajax close*/
 }
 
+
+if(DakDetails!=null){
+	var SelDakId= DakDetails.value;
+	$.ajax({
+		type : "GET",
+		url : "GetAssignedMembers.htm",	
+		datatype : 'json',
+		data : {
+			SelDakId : SelDakId
+		},
+		success :  function(result){
+			var result = JSON.parse(result);
+			console.log(result);
+			if(result.length!=0){
+				var values = Object.values(result).map(function(key, value) {
+					  return result[key,value]
+					});
+				  console.log(values);
+				// Clear the existing list items
+		          var list = document.getElementById("AssignedMembers");
+		          list.innerHTML = '';
+		          
+		          var i=1;
+		          
+		          // Append new list items with fetched values
+		          values.forEach(function (value) {
+		        	  if(i<=4){
+		            var fullName = value[2];
+		            var designation = value[3];
+		            var AssignDateTime=value[4];
+		            var convertedDateString =null;
+		            if(AssignDateTime!=null)
+		            	{
+		            	convertedDateString = newFormatDate(AssignDateTime);
+		            	}
+		            else
+		            	{
+		            	convertedDateString='--';
+		            	}
+		           
+		            var listItem = document.createElement("li");
+		            var paragraph = document.createElement("p");
+
+		            var text = document.createTextNode(fullName + ", " + designation+"  /  ");
+		            var span = document.createElement("span"); 
+		            
+		        
+		            span.textContent = convertedDateString;
+		            span.classList.add("DateStyle");
+
+		            paragraph.appendChild(text);
+		            paragraph.appendChild(span);
+		            
+		            listItem.appendChild(paragraph);
+
+		            list.appendChild(listItem);
+
+		            var dateStyleElements = document.querySelectorAll('.DateStyle');
+		            var styles = {
+		              color: 'rgb(183 57 185)',
+		              fontSize: '12px',  
+		              fontWeight: 'bold',
+		            };
+
+		            dateStyleElements.forEach(element => {
+		              for (let style in styles) {
+		                element.style[style] = styles[style];
+		              }
+		            });
+		        	  
+		        	  }i++;
+		          });
+		          }
+		}/*sucess close*/
+	 });/*Ajax close*/
+}
+
+
+if(DakDetails!=null){
+	var SelDakId= DakDetails.value;
+	$.ajax({
+		type : "GET",
+		url : "GetSeekResponseMembers.htm",	
+		datatype : 'json',
+		data : {
+			SelDakId : SelDakId
+		},
+		success :  function(result){
+			var result = JSON.parse(result);
+			console.log(result);
+			if(result.length!=0){
+				var values = Object.values(result).map(function(key, value) {
+					  return result[key,value]
+					});
+				  console.log(values);
+				// Clear the existing list items
+		          var list = document.getElementById("SeekResponseMembers");
+		          list.innerHTML = '';
+		          
+		          var i=1;
+		          
+		          // Append new list items with fetched values
+		          values.forEach(function (value) {
+		        	  if(i<=4){
+		            var fullName = value[2];
+		            var designation = value[3];
+		            var AssignDateTime=value[4];
+		            var convertedDateString =null;
+		            if(AssignDateTime!=null)
+		            	{
+		            	convertedDateString = newFormatDate(AssignDateTime);
+		            	}
+		            else
+		            	{
+		            	convertedDateString='--';
+		            	}
+		           
+		            var listItem = document.createElement("li");
+		            var paragraph = document.createElement("p");
+
+		            var text = document.createTextNode(fullName + ", " + designation+"  /  ");
+		            var span = document.createElement("span"); 
+		            
+		        
+		            span.textContent = convertedDateString;
+		            span.classList.add("DateStyle");
+
+		            paragraph.appendChild(text);
+		            paragraph.appendChild(span);
+		            
+		            listItem.appendChild(paragraph);
+
+		            list.appendChild(listItem);
+
+		            var dateStyleElements = document.querySelectorAll('.DateStyle');
+		            var styles = {
+		              color: 'rgb(183 57 185)',
+		              fontSize: '12px',  
+		              fontWeight: 'bold',
+		            };
+
+		            dateStyleElements.forEach(element => {
+		              for (let style in styles) {
+		                element.style[style] = styles[style];
+		              }
+		            });
+		        	  
+		        	  }i++;
+		          });
+		          }
+		}/*sucess close*/
+	 });/*Ajax close*/
+}
 
 if(DakDetails!=null){
 	var SelDakId= DakDetails.value;

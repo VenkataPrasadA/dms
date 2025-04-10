@@ -302,18 +302,21 @@ background-image: linear-gradient(rgba(0,128,0, 0.5), rgba(0,128,0, 0.8) 50%)!im
 }
 </style>
 <body>
+<%
+String LabCode=(String)session.getAttribute("LabCode");
+%>
 <div class="page-wrapper">
 <div class="card-header page-top">
 		<div class="row">
 			<div class="col-md-3 heading-breadcrumb">
-				<h5 style="font-weight: 700 !important">DAK P&C DO List</h5>
+				<h5 style="font-weight: 700 !important"><%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")){ %>DAK PPA List<%}else{ %>DAK P&C DO List<%} %></h5>
 			</div>
 			<div class="col-md-9 " >
 				<nav aria-label="breadcrumb">
 				  <ol class="breadcrumb ">
 				    <li class="breadcrumb-item ml-auto"><a href="MainDashBoard.htm"><i class="fa fa-home"></i> Home</a></li>
 				    <li class="breadcrumb-item"><a href="DakDashBoard.htm"><i class="fa fa-envelope"></i> DAK</a></li>
-				    <li class="breadcrumb-item active">DAK P&C DO List</li>
+				    <li class="breadcrumb-item active"><%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")){ %>DAK PPA List<%}else{ %>DAK P&C DO List<%} %></li>
 				  </ol>
 				</nav>
 			</div>			

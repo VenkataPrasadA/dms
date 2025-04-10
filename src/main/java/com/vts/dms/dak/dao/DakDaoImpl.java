@@ -1,7 +1,5 @@
 package com.vts.dms.dak.dao;
 
-import java.math.BigInteger;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,7 +90,7 @@ public class DakDaoImpl implements DakDao {
 	private static final String DELETEREPLYATTACHMENT = "DELETE FROM dak_reply_attachment WHERE replyattachmentid=:replyattachmentid";
 	private static final String UPDATEREPLY = "update dak_reply set remarks=:remarks, modifieddate=sysdate(),modifiedby=:userName where dakreplyid=:replyid";
 	private static final String REPLYATTACHMENT = "SELECT filepath, filename,replyAttachmentid from dak_reply_attachment WHERE replyid=:replyid and ismain=:type";
-	private static final String DAKRECEIVEDVIEWLIST = "SELECT a.createdBy, a.dakid,b.lettertype,c.priorityname,d.sourceshortname,a.Refno,a.dakstatus,a.Refdate,e.statusdesc,a.dakno,g.ActionRequired, a.KeyWord1,a.KeyWord2,a.KeyWord3,a.KeyWord4,a.Subject,a.ProjectType,a.Remarks,a.ActionDueDate,a.ActionTime,a.ClosingAuthority,a.DirectorApproval,(SELECT COUNT(m.FileName) FROM dak_attachment m WHERE m.DakId = a.DakId AND a.DakId=:dakId),a.ClosingCommt,(SELECT COUNT(r.DakLinkId) FROM dak_daklink r WHERE r.DakId = a.DakId AND a.DakId=:dakId),a.ActionId,a.ClosedBy FROM dak a,dak_letter_type b, dak_priority c,dak_source_details d,dak_status e,dak_action g WHERE a.lettertypeid=b.lettertypeid AND a.priorityid=c.priorityid AND a.SourceDetailId=d.SourceDetailId AND a.dakstatus=e.dakstatus  AND g.ActionId=a.ActionId AND a.DakId=:dakId";
+	private static final String DAKRECEIVEDVIEWLIST = "SELECT a.createdBy, a.dakid,b.lettertype,c.priorityname,d.sourceshortname,a.Refno,a.dakstatus,a.Refdate,e.statusdesc,a.dakno,g.ActionRequired, a.KeyWord1,a.KeyWord2,a.KeyWord3,a.KeyWord4,a.Subject,a.ProjectType,a.Remarks,a.ActionDueDate,a.ActionTime,a.ClosingAuthority,a.DirectorApproval,(SELECT COUNT(m.FileName) FROM dak_attachment m WHERE m.DakId = a.DakId AND a.DakId=:dakId),a.ClosingCommt,(SELECT COUNT(r.DakLinkId) FROM dak_daklink r WHERE r.DakId = a.DakId AND a.DakId=:dakId),a.ActionId,a.ClosedBy,f.ClosingAuthorityName FROM dak a,dak_letter_type b, dak_priority c,dak_source_details d,dak_status e,dak_action g,dak_closing_authority f WHERE a.lettertypeid=b.lettertypeid AND a.priorityid=c.priorityid AND a.SourceDetailId=d.SourceDetailId AND a.dakstatus=e.dakstatus AND g.ActionId=a.ActionId AND f.ClosingAuthorityCode = a.ClosingAuthority AND a.DakId=:dakId";
 	private static final String DISTRIBUTEDDAKMEMBERS = "SELECT m.DakMarkingId,m.DakMemberTypeId,m.EmpId,m.MarkerAction,m.Remarkup,(SELECT e.Email FROM employee e WHERE e.EmpId=m.EmpId)AS 'EmpMail',(SELECT e.EmpName FROM employee e WHERE e.EmpId=m.EmpId)AS 'EmpName',(SELECT h.Designation FROM employee g,employee_desig h WHERE g.EmpId=m.EmpId AND g.DesigId=h.DesigId) AS 'EmpDesig',(SELECT e.DronaEmail FROM employee e WHERE e.EmpId=m.EmpId)AS 'DronaEmpMail',a.DakNo  FROM dak_marking m,dak a WHERE m.DakId=:dakid AND a.DakId=m.DakId AND m.IsActive='1' ";
 	private static final String DAKRECEIVEDLIST = "CALL Dms_DakReceivedList(:fromDate,:toDate,:statusvalue,:empId,:username)";
 	private static final String DAKPENDINGREPLYLIST = "CALL Dms_DakPendingReplyList(:fromDate,:toDate,:statusvalue,:empId,:username,:lettertypeid,:priorityid,:sourcedetailid,:sourceId,:projectType,:projectId,:dakMemberTypeId,:employeeId)";
@@ -636,7 +634,7 @@ public class DakDaoImpl implements DakDao {
 			Query query = manager.createNativeQuery(DAKCOUNT);
 			query.setParameter("startDate", fromDate);
 			query.setParameter("endDate", endDate);
-			BigInteger dakData = (BigInteger) query.getSingleResult();
+			Long dakData = (Long) query.getSingleResult();
 			return dakData.longValue();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -651,7 +649,7 @@ public class DakDaoImpl implements DakDao {
 		logger.info(new Date() + "Inside DakIdCountFrDakNoCreation");
 		try {
 			Query query = manager.createNativeQuery(DAKCOUNTFORDAKNOGENERATION);
-			BigInteger dakData = (BigInteger) query.getSingleResult();
+			Long dakData = (Long) query.getSingleResult();
 			return dakData.longValue();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1139,7 +1137,7 @@ public class DakDaoImpl implements DakDao {
 			Query query = manager.createNativeQuery(EMPIDCOUNTOFCOMPARISON);
 			query.setParameter("prjDirEmpId", PrjDirEmpId);
 			query.setParameter("dakid", DakId);
-			BigInteger result = (BigInteger) query.getSingleResult();
+			Long result = (Long) query.getSingleResult();
 		    return result.longValue();
 			
 		} catch (Exception e) {
@@ -2276,7 +2274,7 @@ public class DakDaoImpl implements DakDao {
 		try {
 			Query query = manager.createNativeQuery(EMPIDCOUNTOFDAKMARKING);
 			query.setParameter("dakIdSel", dakIdSel);
-			BigInteger EmpIdCount = (BigInteger) query.getSingleResult();
+			Long EmpIdCount = (Long) query.getSingleResult();
 			return EmpIdCount.longValue();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2291,7 +2289,7 @@ public class DakDaoImpl implements DakDao {
 		try {
 			Query query = manager.createNativeQuery(DAKACKCOUNTOFDAKMARKING);
 			query.setParameter("dakIdSel", dakIdSel);
-			BigInteger dakData = (BigInteger) query.getSingleResult();
+			Long dakData = (Long) query.getSingleResult();
 			return dakData.longValue();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -2306,7 +2304,7 @@ public class DakDaoImpl implements DakDao {
 		try {
 			Query query = manager.createNativeQuery(DAKREPLYCOUNTOFDAKREPLY);
 			query.setParameter("dakIdSel", dakIdSel);
-			BigInteger dakData = (BigInteger) query.getSingleResult();
+			Long dakData = (Long) query.getSingleResult();
 			return dakData.longValue();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -3643,8 +3641,8 @@ public List<Object[]> DakRepliedToMeList(String username, String fromDate, Strin
 		query.setParameter("username", username);
 		query.setParameter("fromDate", fromDate);
 		query.setParameter("toDate", toDate);
-		 List<Object[]> DakRepliedToMeList = (List<Object[]>) query.getResultList();
-			return DakRepliedToMeList;
+		List<Object[]> DakRepliedToMeList = (List<Object[]>) query.getResultList();
+		return DakRepliedToMeList;
 	} catch (Exception e) {
 		e.printStackTrace();
 		logger.error(new Date() + "Inside DaoImpl DakRepliedToMeList", e);
@@ -4136,7 +4134,7 @@ public long DakCreateCountFrDakNoCreation() throws Exception {
 	logger.info(new Date() + "Inside DakCreateCountFrDakNoCreation");
 	try {
 		Query query = manager.createNativeQuery(DAKCREATECOUNTFORDAKNOGENERATION);
-		BigInteger DakCreateCountFrDakNoCreation = (BigInteger) query.getSingleResult();
+		Long DakCreateCountFrDakNoCreation = (Long) query.getSingleResult();
 		return DakCreateCountFrDakNoCreation.longValue();
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -4459,7 +4457,7 @@ public long oldAssignEmpCount(long EmpId, Long dakId) throws Exception {
 		Query query = manager.createNativeQuery(OLDASSIGNEMPCOUNT);
 		query.setParameter("EmpId", EmpId);
 		query.setParameter("dakId", dakId);
-		BigInteger result = (BigInteger) query.getSingleResult();
+		Long result = (Long) query.getSingleResult();
 	    return result.longValue();
 		
 	} catch (Exception e) {
@@ -4558,6 +4556,20 @@ public List<Object[]> selectedNewDakEmployees(long dakCreateId,String labCode) t
 	} catch (Exception e) {
 		e.printStackTrace();
 		logger.error(new Date()+"Inside the selectedNewDakEmployees()",e);
+		return null;
+	}
+}
+
+private static final String CLOSINGAUTHORITYLIST="SELECT ClosingAuthorityId,ClosingAuthorityName,ClosingAuthorityCode FROM dak_closing_authority WHERE IsActive='1'";
+@Override
+public List<Object[]> closingAuthorityList() throws Exception {
+	logger.info(new Date()+"Inside the closingAuthorityList()");
+	try {
+		Query query=manager.createNativeQuery(CLOSINGAUTHORITYLIST);
+		return (List<Object[]>)query.getResultList();
+	} catch (Exception e) {
+		e.printStackTrace();
+		logger.error(new Date()+"Inside the closingAuthorityList()",e);
 		return null;
 	}
 }

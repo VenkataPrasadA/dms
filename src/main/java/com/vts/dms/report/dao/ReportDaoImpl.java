@@ -27,7 +27,7 @@ public class ReportDaoImpl implements ReportDao{
 		private static final Logger logger=LogManager.getLogger(DakDaoImpl.class);
 		
 		private static final String DAKSTATUSLIST="CALL Dms_DakStatus(:UserName,:LoginType,:EmpId,:fromDate,:toDate)";
-		private static final String DAKTRACKINGLIST="SELECT a.dakId, a.dakno,a.Refno,a.Refdate,a.dakstatus,a.createdBy,a.createdDate,a.distributedDate,a.ActionId,a.ActionDueDate,a.SourceId,(SELECT b.CreatedBy FROM dak_pnc_reply b WHERE b.DakId=a.dakid) AS 'P&C',(SELECT b.CreatedDate FROM dak_pnc_reply b WHERE b.DakId=a.dakid) AS 'P&C CreatedDate',ClosedBy,ClosedDateTime,ApprovedBy,ApprovedDateTime,(SELECT MIN(b.DakAckDate) FROM dak_marking b WHERE b.DakId=a.dakid) AS 'FirstAckDate',(SELECT MIN(b.CreatedDate) FROM dak_reply b WHERE b.DakId=a.dakid) AS 'FirstReplyDate',(SELECT s.SourceShortName FROM dak_source_details s WHERE s.SourceDetailId=a.SourceDetailId)AS 'sourceShortName',a.ClosingAuthority,a.DirectorApproval,a.ForwardBy,a.ForwardDate,(SELECT MIN(s.CreatedDate) FROM dak_assign s WHERE s.DakId=a.DakId) AS 'FirstAssignDate' FROM dak a WHERE a.DakId=:dakid";
+		private static final String DAKTRACKINGLIST="SELECT a.dakId, a.dakno,a.Refno,a.Refdate,a.dakstatus,a.createdBy,a.createdDate,a.distributedDate,a.ActionId,a.ActionDueDate,a.SourceId,(SELECT b.CreatedBy FROM dak_pnc_reply b WHERE b.DakId=a.dakid) AS 'P&C',(SELECT b.CreatedDate FROM dak_pnc_reply b WHERE b.DakId=a.dakid) AS 'P&C CreatedDate',ClosedBy,ClosedDateTime,ApprovedBy,ApprovedDateTime,(SELECT MIN(b.DakAckDate) FROM dak_marking b WHERE b.DakId=a.dakid) AS 'FirstAckDate',(SELECT MIN(b.CreatedDate) FROM dak_reply b WHERE b.DakId=a.dakid) AS 'FirstReplyDate',(SELECT s.SourceShortName FROM dak_source_details s WHERE s.SourceDetailId=a.SourceDetailId)AS 'sourceShortName',a.ClosingAuthority,a.DirectorApproval,a.ForwardBy,a.ForwardDate,(SELECT MIN(s.CreatedDate) FROM dak_assign s WHERE s.DakId=a.DakId) AS 'FirstAssignDate',(SELECT MIN(r.CreatedDate) FROM dak_seekresponse r WHERE r.DakId=a.DakId) AS 'FirstSeekResponseDate' FROM dak a WHERE a.DakId=:dakid";
 	    private static final String DAKTRACKINGPRINTLIST="CALL Dms_DakTrackingPrint(:dakid)";
         private static final String INITITATEDBYDETAILS ="SELECT a.EmpId,b.EmpName,c.Designation FROM login a, employee b, employee_desig c WHERE a.UserName=:initiatedBy AND a.EmpId=b.EmpId AND b.desigId=c.desigId";
         private static final String ACKNOWLEDGEDMEMBERSLIST = "SELECT b.dakId,b.EmpId,DakAckStatus,c.empName,d.designation,b.DakAckDate FROM dak a,dak_marking b,employee c, employee_desig d WHERE a.dakId=:dakId AND a.dakId=b.dakId  AND b.DakAckStatus='Y' AND b.empId=c.empId AND c.desigId=d.desigId";
@@ -578,7 +578,7 @@ public class ReportDaoImpl implements ReportDao{
 		
 		private static final String GETACKNOWLEDGEMEMBERLIST="SELECT b.dakId,b.EmpId,DakAckStatus,c.empName,d.designation FROM dak a,dak_marking b,employee c, employee_desig d WHERE a.dakId=:selDakId AND a.dakId=b.dakId AND b.empId=c.empId AND c.desigId=d.desigId";
 		@Override
-		public List<Object[]> GeAcknowledgeMembersList(String selDakId) throws Exception {
+		public List<Object[]> GetAcknowledgeMembersList(String selDakId) throws Exception {
 			try {
 				Query query=manager.createNativeQuery(GETACKNOWLEDGEMEMBERLIST);
 				query.setParameter("selDakId", selDakId);
@@ -601,6 +601,40 @@ public class ReportDaoImpl implements ReportDao{
 			return resultList;
 			}catch (Exception e){
 				  logger.error(new Date() + "Inside DAOImpl GetRepliedMembersList() error"+e);
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		private static final String GETASSIGNEDMEMBERSLIST="SELECT b.dakId,b.EmpId,c.empName,d.designation,b.CreatedDate FROM dak a,dak_assign b,employee c, employee_desig d WHERE a.dakId=:dakId AND a.dakId=b.dakId AND b.empId=c.empId AND c.desigId=d.desigId";
+		@Override
+		public List<Object[]> GetAssignedMembersList(String dakId) throws Exception {
+			logger.info(new Date() +"Inside DAOImpl GeAssignedMembersList");
+			try {
+			Query query =manager.createNativeQuery(GETASSIGNEDMEMBERSLIST);
+			query.setParameter("dakId",dakId );
+			List<Object[]> resultList =(List<Object[]>)query.getResultList();				
+			return resultList;
+			}catch (Exception e){
+				  logger.error(new Date() + "Inside DAOImpl GeAssignedMembersList() error"+e);
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		
+		
+		private static final String GETSEEKRESPONSEMEMBERLIST="SELECT b.dakId,b.SeekEmpId,c.empName,d.designation,b.CreatedDate FROM dak a,dak_seekresponse b,employee c, employee_desig d WHERE a.dakId=:dakId AND a.dakId=b.dakId AND b.SeekEmpId=c.empId AND c.desigId=d.desigId";
+		@Override
+		public List<Object[]> GetSeekRepsonseMembersList(String dakId) throws Exception {
+			logger.info(new Date() +"Inside DAOImpl GetSeekRepsonseMembersList");
+			try {
+			Query query =manager.createNativeQuery(GETSEEKRESPONSEMEMBERLIST);
+			query.setParameter("dakId",dakId );
+			List<Object[]> resultList =(List<Object[]>)query.getResultList();				
+			return resultList;
+			}catch (Exception e){
+				  logger.error(new Date() + "Inside DAOImpl GetSeekRepsonseMembersList() error"+e);
 				e.printStackTrace();
 				return null;
 			}

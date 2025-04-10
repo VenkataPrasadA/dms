@@ -296,6 +296,52 @@ public class ReportController {
 	
 	
 	@CrossOrigin(origins = "*")
+	@RequestMapping(value="GetAssignedMembers.htm",method=RequestMethod.GET)   
+	public  @ResponseBody String  GetAssignedMembers(HttpServletRequest req, HttpSession ses)throws Exception{
+		String Username=(String)ses.getAttribute("Username");
+		logger.info(new Date() + "Inside GetAcknowledgedMembers.htm"+Username);
+		Gson json = new Gson();
+		List <Object[]> AssignedMembersData = null;
+		try {
+			String DakId=(String)req.getParameter("SelDakId");
+			List<Object[]> AssignedMembersList = service.GetAssignedMembersList(DakId);
+			if(AssignedMembersList!=null && AssignedMembersList.size()>0) {
+				AssignedMembersData = AssignedMembersList;
+			}else {
+				AssignedMembersData = null;
+			}
+			} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(new Date() +" Inside GetAssignedMembers.htm "+Username, e);
+			}
+		return json.toJson(AssignedMembersData);
+
+	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value="GetSeekResponseMembers.htm",method=RequestMethod.GET)   
+	public  @ResponseBody String  GetSeekResponseMembers(HttpServletRequest req, HttpSession ses)throws Exception{
+		String Username=(String)ses.getAttribute("Username");
+		logger.info(new Date() + "Inside GetSeekResponseMembers.htm"+Username);
+		Gson json = new Gson();
+		List <Object[]> SeekResponseMembersData = null;
+		try {
+			String DakId=(String)req.getParameter("SelDakId");
+			List<Object[]> SeekResponseMembersList = service.GetSeekRepsonseMembersList(DakId);
+			if(SeekResponseMembersList!=null && SeekResponseMembersList.size()>0) {
+				SeekResponseMembersData = SeekResponseMembersList;
+			}else {
+				SeekResponseMembersData = null;
+			}
+			} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(new Date() +" Inside GetSeekResponseMembers.htm "+Username, e);
+			}
+		return json.toJson(SeekResponseMembersData);
+
+	}
+	
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value="GetRepliedMemberName.htm",method=RequestMethod.GET)
 	public  @ResponseBody String  GetRepliedMemberName(HttpServletRequest req, HttpSession ses)throws Exception{
 		String Username=(String)ses.getAttribute("Username");
@@ -1246,7 +1292,7 @@ public class ReportController {
 		List <Object[]> AcknowledgeMembersData = null;
 		try {
 			String SelDakId=(String)req.getParameter("SelDakId");
-			List<Object[]> AcknowledgeMembersList = service.GeAcknowledgeMembersList(SelDakId);
+			List<Object[]> AcknowledgeMembersList = service.GetAcknowledgeMembersList(SelDakId);
 			if(AcknowledgeMembersList!=null && AcknowledgeMembersList.size()>0) {
 				AcknowledgeMembersData = AcknowledgeMembersList;
 			}else {

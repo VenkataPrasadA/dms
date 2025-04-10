@@ -144,6 +144,7 @@ public class DakController {
 			req.setAttribute("DakMemberGroup", service.DakMemberGroup());
 			req.setAttribute("LabCode", LabCode);			
 			req.setAttribute("employeeList", service.EmpListDropDown(LabCode));
+			req.setAttribute("dakClosingAuthorityList", service.closingAuthorityList());
 			return "dak/dakInit";
 		}catch (Exception e) {
 			logger.error(new Date() +" In CONTROLLER DakInit.htm "+req.getUserPrincipal().getName()+"  "+e);
@@ -375,6 +376,7 @@ public class DakController {
 			req.setAttribute("DakMembers", service.getDakMembers());
 			req.setAttribute("ActionCode", ActionCode);
 			req.setAttribute("DakMemberGroup", service.DakMemberGroup());
+			req.setAttribute("dakClosingAuthorityList", service.closingAuthorityList());
 			
 			String fromDate=(String)req.getParameter("fromDateFetch");
 			String toDate=(String)req.getParameter("toDateFetch");
@@ -1001,11 +1003,11 @@ public class DakController {
 	    	long Status=service.addDakMember(memberType,member,UserName);
 	    	if(Status>0)
 	    	{
-	    		rAtt.addAttribute("Status", "Dak Member Added Successfully");
+	    		rAtt.addAttribute("Status", "DAK Member Added Successfully");
 	    	}
 	    	else
 	    	{
-	    		rAtt.addAttribute("StatusFail", "Dak Member Added UnSuccessfully");
+	    		rAtt.addAttribute("StatusFail", "DAK Member Added UnSuccessfully");
 	    	}
 	    	rAtt.addAttribute("MemberType", memberType);
 	    	rAtt.addAttribute("Employee", member);
@@ -1455,6 +1457,7 @@ public class DakController {
 				req.setAttribute("viewfrom", viewfrom);
 				req.setAttribute("repliedReply", repliedReply);
 				req.setAttribute("actionList",service.getActionList());
+				req.setAttribute("dakClosingAuthorityList",service.closingAuthorityList());
 				req.setAttribute("dakReceivedList", service.dakReceivedViewrecived(EmpId,DakId));
 				return "dak/dakReceivedView";
 			} catch (Exception e) {
@@ -1794,12 +1797,12 @@ public class DakController {
 			}
 				if(result>0) 
 				{
-					redir.addAttribute("result","Dak Marked Successfully");
+					redir.addAttribute("result","DAK Marked Successfully");
 				}else if(result == -1)
 				{
 					redir.addAttribute("resultfail","At least one employee should be chosen.");
 				}else {
-					redir.addAttribute("resultfail","Dak Marked Unsuccessful");
+					redir.addAttribute("resultfail","DAK Marked Unsuccessful");
 				}
 				
 				
@@ -1967,11 +1970,11 @@ public class DakController {
 				if(DakAssignInsert>0) 
 				{
 					service.dakAssignstatus(Long.parseLong(DakMarkingIdsel));
-					redir.addAttribute("result","Dak Assign Successfully ");
+					redir.addAttribute("result","DAK Assign Successfully ");
 				}
 				else
 				{
-					redir.addAttribute("resultfail","Dak Assign Unsuccessful");
+					redir.addAttribute("resultfail","DAK Assign Unsuccessful");
 				}
 				String PageRedir=(String)req.getParameter("PageRedireData");
 				String RowRedir=(String)req.getParameter("RowRedireData");
@@ -2052,11 +2055,11 @@ public class DakController {
 						&& !DakDetails.getDakStatus().equalsIgnoreCase("RP") && !DakDetails.getDakStatus().equalsIgnoreCase("AP") && !DakDetails.getDakStatus().equalsIgnoreCase("RM")  ) {
 				service.UpdateDakStatusToDR(Long.parseLong(dakId));
 				}
-				redir.addAttribute("result","Dak Replied Successfully ");
+				redir.addAttribute("result","DAK Replied Successfully ");
 			}
 			else
 			{
-				redir.addAttribute("resultfail","Dak Replied Unsuccessful");
+				redir.addAttribute("resultfail","DAK Replied Unsuccessful");
 			}
 			String PageRedir=(String)req.getParameter("PageRedirectData");
 			String RowRedir=(String)req.getParameter("RowRedirectData");
@@ -2362,11 +2365,11 @@ public class DakController {
 			}
 			if(result>0) 
 			{
-				redir.addAttribute("result","Dak Reply Edit Successfully ");
+				redir.addAttribute("result","DAK Reply Edit Successfully ");
 			}
 			else
 			{
-				redir.addAttribute("resultfail","Dak Reply Edit Unsuccessful");
+				redir.addAttribute("resultfail","DAK Reply Edit Unsuccessful");
 			}
 			redir.addAttribute("viewfrom", req.getParameter("viewfrom"));
 			return "redirect:/DakReceivedView.htm";
@@ -2541,6 +2544,7 @@ public class DakController {
 				req.setAttribute("DakMembers", service.getDakMembers());
                 req.setAttribute("DakMemberGroup", service.DakMemberGroup());
 				req.setAttribute("actionList",service.getActionList());
+				req.setAttribute("dakClosingAuthorityList", service.closingAuthorityList());
 				req.setAttribute("DakDetailedList", service.DakDetailedList(fromDate,toDate,StatusValue,lettertypeid,priorityid,sourcedetailid,SourceId,ProjectType,ProjectId,DakMemberTypeId,EmpId,DivisionCode,LabCode,UserName));
 				String RowNumber=req.getParameter("RowNumber");
 				req.setAttribute("RowNumber",   RowNumber);
@@ -2936,10 +2940,10 @@ public class DakController {
 				redir.addAttribute("RowData", AssignReplyRowNo);
 				if(result>0) {
 					service.updateAssignStatus(Long.parseLong(DakAssignId));
-					redir.addAttribute("result","Dak Assign Replied Successfully ");
+					redir.addAttribute("result","DAK Assign Replied Successfully ");
 					
 				}else {
-					redir.addAttribute("resultfail","Dak Assign Replied Unsuccessful");
+					redir.addAttribute("resultfail","DAK Assign Replied Unsuccessful");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -3265,12 +3269,12 @@ public class DakController {
 			     redir.addAttribute("RowNumber", Row);
 				if(result>0) 
 				{
-					redir.addAttribute("result","Dak ReMarked Successfully ");
+					redir.addAttribute("result","DAK ReMarked Successfully ");
 				}else if(result == -1)
 				{
 					redir.addAttribute("resultfail","At least one employee should be chosen.");
 				}else {
-					redir.addAttribute("resultfail","Dak ReMarke Unsuccessful ");
+					redir.addAttribute("resultfail","DAK ReMarke Unsuccessful ");
 				}
 				String redirectVal = null;
 				redirectVal = req.getParameter("RemarkRedirectValue");
@@ -4571,11 +4575,11 @@ public class DakController {
 			}
 			if(result>0) 
 			{
-				redir.addAttribute("result","Dak Assign Reply Edit Successfully ");
+				redir.addAttribute("result","DAK Assign Reply Edit Successfully ");
 			}
 			else
 			{
-				redir.addAttribute("resultfail","Dak Assign Reply Edit Unsuccessful");
+				redir.addAttribute("resultfail","DAK Assign Reply Edit Unsuccessful");
 			}
          if(req.getParameter("viewfrom")!=null && req.getParameter("viewfrom").equalsIgnoreCase("DakAssignedList")) {
 				redir.addAttribute("viewfrom", req.getParameter("viewfrom"));
@@ -4722,11 +4726,11 @@ public class DakController {
 			}
 			if(result>0) 
 			{
-				redir.addAttribute("result","Dak Forwarded Successfully ");
+				redir.addAttribute("result","DAK Forwarded Successfully ");
 			}
 			else
 			{
-				redir.addAttribute("resultfail","Dak Forwarded Unsuccessful");
+				redir.addAttribute("resultfail","DAK Forwarded Unsuccessful");
 			}
 			return "redirect:/DakReceivedList.htm";
 			
@@ -4772,11 +4776,11 @@ public class DakController {
 				rdto.setCreatedBy(req.getUserPrincipal().getName());
 				rdto.setCreatedDate(sdf1.format(new Date()));
 				service.DakAssignReplyRev(rdto,PrevFilePathandFileName);
-				redir.addAttribute("result","Dak Assign Reply Return Edit Successfully ");
+				redir.addAttribute("result","DAK Assign Reply Return Edit Successfully ");
 			}
 			else
 			{
-				redir.addAttribute("resultfail","Dak Assign Reply Return Edit Unsuccessful");
+				redir.addAttribute("resultfail","DAK Assign Reply Return Edit Unsuccessful");
 			}
 			return "redirect:/DakAssignedList.htm";
 			
@@ -4891,11 +4895,11 @@ public class DakController {
 			}
 			if(Result>0) 
 			{
-				redir.addAttribute("result","Dak Action Required  Edit Successfully ");
+				redir.addAttribute("result","DAK Action Required  Edit Successfully ");
 			}
 			else
 			{
-				redir.addAttribute("resultfail","Dak Action Required  Edit Unsuccessful");
+				redir.addAttribute("resultfail","DAK Action Required  Edit Unsuccessful");
 			}
 			String redirectVal = null;
 			redirectVal = req.getParameter("ActionRequiredEditActionVal");
@@ -5022,11 +5026,11 @@ public class DakController {
 				if(DakAssignInsert>0) 
 				{
 					service.dakAssignstatus(Long.parseLong(DakMarkingIdsel));
-					redir.addAttribute("result","Dak ReAssign Successfully ");
+					redir.addAttribute("result","DAK ReAssign Successfully ");
 				}
 				else
 				{
-					redir.addAttribute("resultfail","Dak ReAssign Unsuccessful");
+					redir.addAttribute("resultfail","DAK ReAssign Unsuccessful");
 				}
 				//redirection
 				String fromDate=(String)req.getParameter("fromDateFetch");
@@ -5439,7 +5443,9 @@ public class DakController {
 						 
 						 cell= t_body_row.createCell(12); 
 						 if(obj[38]!=null && !"NA".equalsIgnoreCase(obj[38].toString())) {
-						 cell.setCellValue(sdf.format(rdf.parse(replieddate)));
+							 String repliedDate = obj[38].toString();
+					         Date date1 = sdf1.parse(repliedDate);
+					         cell.setCellValue(sdf.format(date1));
 						 }else {
 							 cell.setCellValue("NA");
 						 }
@@ -5568,11 +5574,11 @@ public class DakController {
 				long DakSeekResponseInsert=service.DakSeekResponseInsert(dto,DakCaseWorker,EmpId);
 				if(DakSeekResponseInsert>0) 
 				{
-					redir.addAttribute("result","Dak SeekResponse Assign Successfully ");
+					redir.addAttribute("result","DAK SeekResponse Assign Successfully ");
 				}
 				else
 				{
-					redir.addAttribute("resultfail","Dak SeekResponse Assign Unsuccessful");
+					redir.addAttribute("resultfail","DAK SeekResponse Assign Unsuccessful");
 				}
 				//redirection
 				String Page=(String)req.getParameter("PageValBySeekRepsonse");
@@ -5698,10 +5704,10 @@ public class DakController {
 				redir.addAttribute("PageNoData", SeekResponseReplyPageNo);
 				redir.addAttribute("RowData", SeekResponseReplyRowNo);
 				if(result>0) {
-					redir.addAttribute("result","Dak SeekResponse Replied Successfully ");
+					redir.addAttribute("result","DAK SeekResponse Replied Successfully ");
 					
 				}else {
-					redir.addAttribute("resultfail","Dak SeekResponse Replied Unsuccessful");
+					redir.addAttribute("resultfail","DAK SeekResponse Replied Unsuccessful");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -5865,11 +5871,11 @@ public class DakController {
 			}
 			if(result>0) 
 			{
-				redir.addAttribute("result","Dak Seek Response Reply Edit Successfully ");
+				redir.addAttribute("result","DAK Seek Response Reply Edit Successfully ");
 			}
 			else
 			{
-				redir.addAttribute("resultfail","Dak Seek Response Reply Edit Unsuccessful");
+				redir.addAttribute("resultfail","DAK Seek Response Reply Edit Unsuccessful");
 			}
 			if(req.getParameter("viewfrom")!=null && req.getParameter("viewfrom").equalsIgnoreCase("DakSeekResponseList")) {
 				redir.addAttribute("viewfrom", req.getParameter("viewfrom"));
@@ -6219,9 +6225,9 @@ public class DakController {
 				redir.addAttribute("DakId", DakId);
 				redir.addAttribute("viewfrom", "DakReceivedList");
 				if(result>0) {
-					redir.addAttribute("result","Dak Remind Sent Successfully ");
+					redir.addAttribute("result","DAK Remind Sent Successfully ");
 				}else {
-					redir.addAttribute("resultfail","Dak Remind Sent Unsuccessful");
+					redir.addAttribute("resultfail","DAK Remind Sent Unsuccessful");
 				}
 				return "redirect:/DakReceivedView.htm";
 			} catch (Exception e) {
@@ -6298,9 +6304,9 @@ public class DakController {
 				redir.addAttribute("DakId", DakId);
 				redir.addAttribute("viewfrom", RepliedFrom);
 				if(result>0) {
-					redir.addAttribute("result","Dak Remind Replied Successfully ");
+					redir.addAttribute("result","DAK Remind Replied Successfully ");
 				}else {
-					redir.addAttribute("resultfail","Dak Remind Replied Unsuccessful");
+					redir.addAttribute("resultfail","DAK Remind Replied Unsuccessful");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -7205,11 +7211,11 @@ public class DakController {
 					long DakAssignUpdate=service.DakAssignUpdate(EmpIdAssignUpdate,DakIdAssignUpdate,0,RemarksAssignUpdate);
 					if(DakAssignUpdate>0) 
 					{
-						redir.addAttribute("result","Dak Assign Delete Successfully ");
+						redir.addAttribute("result","DAK Assign Delete Successfully ");
 					}
 					else
 					{
-						redir.addAttribute("resultfail","Dak Assign Delete Unsuccessful");
+						redir.addAttribute("resultfail","DAK Assign Delete Unsuccessful");
 					}
 					String PageRedir=(String)req.getParameter("PageRedireData");
 					String RowRedir=(String)req.getParameter("RowRedireData");
@@ -7328,9 +7334,9 @@ public class DakController {
 					
 					if(result>0) {
 						
-						redir.addAttribute("result","Dak Replied & Closed Successfully ");
+						redir.addAttribute("result","DAK Replied & Closed Successfully ");
 					}else{
-						redir.addAttribute("resultfail","Dak Replied & Closed Unsuccessful");
+						redir.addAttribute("resultfail","DAK Replied & Closed Unsuccessful");
 					}
 	
 					} catch (Exception e) {

@@ -3433,5 +3433,10 @@ public long newinsertDak(DakAddDto dakdto, Long empId, String[] dakLinkId) throw
 public List<Object[]> selectedNewDakEmployees(long dakCreateId,String labCode) throws Exception {
 	return dao.selectedNewDakEmployees(dakCreateId,labCode);
 }
+
+@Override
+public List<Object[]> closingAuthorityList() throws Exception {
+	return dao.closingAuthorityList();
+}
 }
 

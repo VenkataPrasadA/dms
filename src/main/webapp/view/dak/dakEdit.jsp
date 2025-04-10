@@ -246,20 +246,13 @@ List<Object[]> DakMarkingData=(List<Object[]>)request.getAttribute("DakMarkingDa
 List<Object[]> dakLinkData=(List<Object[]>)request.getAttribute("dakLinkData");
 
 List<Object[]> DakMemberGroup = (List<Object[]>) request.getAttribute("DakMemberGroup");
+List<Object[]> dakClosingAuthorityList = (List<Object[]>)request.getAttribute("dakClosingAuthorityList");
 		
 String frmDtE=(String)request.getAttribute("fromDateRedir");
 String toDtE=(String)request.getAttribute("toDateRedir");	
 
 String PageNoData=(String)request.getAttribute("PageNoData");
 String RowData=(String)request.getAttribute("RowData");	
-
-System.out.println("PageNoData:"+PageNoData);
-System.out.println("RowData:"+RowData);
-
-
-System.out.println("dakData.getDakCreateId():"+dakData.getDakCreateId());
-
-
 
 String ActionRedirectVal=(String)request.getAttribute("RedirectVal");//Code for  DAK Director List Redirect
 String ActionForm=(String)request.getAttribute("ActionForm");
@@ -610,12 +603,17 @@ String ActionForm=(String)request.getAttribute("ActionForm");
 									<div class="form-group">
 										<label class="control-label">Closing Authority<span class="mandatory" style="color: red; font-weight: normal;">*</span></label> 
                                         <select class="form-control selectpicker " id="ClosingAuthority" required="required" name="closingAuthorityEditVal" >
-											<option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("P")){%> selected="selected" <%} %> value="P">P&C DO</option>
+											<%if(dakClosingAuthorityList!=null && !dakClosingAuthorityList.isEmpty()){
+											for(Object[] obj: dakClosingAuthorityList){
+											%>
+											<option <% if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equalsIgnoreCase(obj[2].toString())){%>selected="selected" <%} %> value="<%=obj[2].toString()%>"><%=obj[1] %></option>
+											<%}} %>
+											<%-- <option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("P")){%> selected="selected" <%} %> value="P">P&C DO</option>
 											<option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("K")){%> selected="selected" <%} %> value="K">D-KRM</option>
 											<option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("A")){%> selected="selected" <%} %> value="A">D-Adm</option>
 											<option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("R")){%> selected="selected" <%} %> value="R">DFMM</option>
 											<option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("Q")){%> selected="selected" <%} %> value="Q">DQA</option>
-											<option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("O")){%> selected="selected" <%} %> value="O">Others</option>
+											<option <%if(dakData.getClosingAuthority()!=null && dakData.getClosingAuthority().toString().equals("O")){%> selected="selected" <%} %> value="O">Others</option> --%>
 										</select>
 									</div>
 								</div>
@@ -1076,7 +1074,7 @@ function changeProject(){
 	if($('#RelaventId').val()=='N'){
 		$('#proname1').html('Project Type');
 		$('#prodiv').prop('hidden',true);
-		/* $('#ProId').prop('disabled',true); */
+	    $('#ProId').prop('disabled',true); 
 		$('#prodiv1').prop('hidden',false);
 		$('#prodiv2').prop('hidden',true);
 		$('#ProId1').prop('disabled',false);
@@ -1084,18 +1082,19 @@ function changeProject(){
 	}else if($('#RelaventId').val()=='P'){
 		$('#proname').html('Project Type');
 		$('#prodiv1').prop('hidden',true);
-		/* $('#ProId').prop('disabled',false); */
 		$('#prodiv').prop('hidden',false);
 		$('#prodiv2').prop('hidden',true);
 		$('#ProId1').prop('disabled',true);
-		$('#ProId1').prop('disabled',true);
+		$('#ProId1').selectpicker('refresh');
+		$('#ProId').prop('disabled',false);
+		$('#ProId').selectpicker('refresh');
 	    hiddenElement.style.display = "block";
 	    projectDirectorAutoSelect();//call function projectDirectorAutoSelect onchange of project type to get First projects PrjDirector
 	}else if($('#RelaventId').val()=='O'){
 		$('#proname2').html('Project Type');
 		$('#prodiv1').prop('hidden',true);
 		$('#prodiv').prop('hidden',true);
-		/* $('#ProId').prop('disabled',true); */
+		$('#ProId').prop('disabled',true); 
 		$('#prodiv2').prop('hidden',false);
 		$('#ProId1').prop('disabled',true);
 		hiddenElement.style.display = "none";

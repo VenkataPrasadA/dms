@@ -1,6 +1,5 @@
 package com.vts.dms.admin.dao;
 
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ public class AdminDaoImpl implements AdminDao {
     private static final String USERMANAGELIST = "select a.loginid, a.username, b.divisionname,c.formrolename,a.Pfms,CONCAT(IFNULL(CONCAT(e.title,' '),''), e.empname) AS 'empname', d.designation,e.empno ,e.labcode ,lt.logindesc FROM login a , division_master b , form_role c,employee e, employee_desig d,login_type lt  where  a.isactive=1 AND a.empid=e.empid AND e.desigid=d.desigid AND e.divisionid=b.divisionid and a.formroleid=c.formroleid AND a.logintypeDms=lt.logintype ORDER BY CASE WHEN e.Srno = 0 THEN 1 ELSE 0 END, e.Srno ASC";
 	private static final String DIVISIONLIST ="select divisionid,divisioncode from division_master where isactive='1'";
 	private static final String EMPLOYEEDATA ="SELECT a.empid, a.srno,a.empno,a.empname,a.desigid,a.divisionid ,b.groupid  FROM employee  a , division_master b WHERE a.divisionid =b.divisionid  AND a.empid=:empid";
-	private static final String LOGINEDITDATA="FROM Login WHERE LOGINID=:LoginId";
+	private static final String LOGINEDITDATA="FROM Login WHERE loginId=:loginId";
 	private static final String USERNAMEPRESENTCOUNT ="select count(*) from login where username=:username and isactive='1'";
 	private static final String LOGINUPDATE="update login set LoginTypeDms=:logintype, formroleid=:formroleid,empid=:empid,modifiedby=:modifiedby,modifieddate=:modifieddate where loginid=:loginid";
 	private static final String LOGINDELETE="update login set isactive=:isactive,modifiedby=:modifiedby,modifieddate=:modifieddate where loginid=:loginid";
@@ -90,7 +89,7 @@ public class AdminDaoImpl implements AdminDao {
 		Query query = manager.createNativeQuery(ROLEPRESENTCOUNT);
 		query.setParameter("formrolename", RoleName);
 
-		BigInteger RolePresentCount = (BigInteger) query.getSingleResult();
+		Long RolePresentCount = (Long) query.getSingleResult();
 		return RolePresentCount.intValue();
 	}
 
@@ -239,7 +238,6 @@ public class AdminDaoImpl implements AdminDao {
 	
 		manager.persist(login);
 		manager.flush();
-		
 		return login.getLoginId();
 	}
 
@@ -248,7 +246,7 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public Login UserManagerEditData(Long LoginId) throws Exception {
 		Query query = manager.createQuery(LOGINEDITDATA);
-		query.setParameter("LoginId", LoginId);
+		query.setParameter("loginId", LoginId);
 		Login UserManagerEditData = (Login) query.getSingleResult();
 	
 		return UserManagerEditData;
@@ -261,7 +259,7 @@ public class AdminDaoImpl implements AdminDao {
 		Query query = manager.createNativeQuery(USERNAMEPRESENTCOUNT);
 		query.setParameter("username", UserName);
 		
-		BigInteger UserNamePresentCount = (BigInteger) query.getSingleResult();
+		Long UserNamePresentCount = (Long) query.getSingleResult();
 		return   UserNamePresentCount.intValue();
 	}
 
@@ -714,7 +712,7 @@ public class AdminDaoImpl implements AdminDao {
 		Query query = manager.createNativeQuery(FROMANDTODATECOUNT);
 		query.setParameter("fromDate", fromDate);
 		query.setParameter("toDate", toDate);
-		BigInteger fromAndtoDateCount = (BigInteger) query.getSingleResult();
+		Long fromAndtoDateCount = (Long) query.getSingleResult();
 		return fromAndtoDateCount.longValue();	
 	}
 	
@@ -726,7 +724,7 @@ public class AdminDaoImpl implements AdminDao {
 		query.setParameter("FromEmpId", FromEmpId);
 		query.setParameter("fromDate", fromDate);
 		query.setParameter("toDate", toDate);
-		BigInteger fromAndtoDateCount = (BigInteger) query.getSingleResult();
+		Long fromAndtoDateCount = (Long) query.getSingleResult();
 		return fromAndtoDateCount.longValue();
 	}
 	
@@ -742,7 +740,7 @@ public class AdminDaoImpl implements AdminDao {
 		query.setParameter("fromdate", fromdate);
 		query.setParameter("todate", todate);
 		query.setParameter("handingOverId", handingOverId);
-		BigInteger fromAndtoDateCountEdit = (BigInteger) query.getSingleResult();
+		Long fromAndtoDateCountEdit = (Long) query.getSingleResult();
 		return fromAndtoDateCountEdit.longValue();
 	}
 	
@@ -767,7 +765,7 @@ public class AdminDaoImpl implements AdminDao {
 		query.setParameter("handingOverId", handingOverId);
 		query.setParameter("fromdate", fromdate);
 		query.setParameter("todate", todate);
-		BigInteger FromEmployeeCountEdit = (BigInteger) query.getSingleResult();
+		Long FromEmployeeCountEdit = (Long) query.getSingleResult();
 		return FromEmployeeCountEdit.longValue();
 	}
 	

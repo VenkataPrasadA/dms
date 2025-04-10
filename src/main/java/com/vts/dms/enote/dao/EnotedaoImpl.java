@@ -1,6 +1,5 @@
 package com.vts.dms.enote.dao;
 
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -92,7 +91,7 @@ public class EnotedaoImpl implements Enotedao{
 		logger.info(new Date() + "Inside EnoteIdForCount");
 		try {
 			Query query = manager.createNativeQuery(ENOTECOUNTFORIDGENERATION);
-			BigInteger Enote = (BigInteger) query.getSingleResult();
+			Long Enote = (Long) query.getSingleResult();
 			return Enote.longValue();
 		} catch (Exception e) {
 			e.printStackTrace();

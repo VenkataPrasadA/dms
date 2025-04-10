@@ -402,6 +402,7 @@ margin-top: -20px !important;
 		String statusFilteration =(String)request.getAttribute("statusValue");
 		
 		List<Object[]> smsList=(List<Object[]>)request.getAttribute("smsList");
+		List<Object[]> dakClosingAuthorityList=(List<Object[]>)request.getAttribute("dakClosingAuthorityList");
 		String jsonSmsList = new Gson().toJson(smsList);
 		
 		String escapedJsonSmsList = jsonSmsList.replace("'", "\\'");
@@ -1141,6 +1142,15 @@ $(function() {
  
  
  function EditAction(ActionRequiredDakId,ActionForm,dakno,source,fromdate,todate,PageNumber,RowNumber) {
+	 
+	 var dakClosingAuthorityList = [];
+	    <% 
+	        List<Object[]> list = (List<Object[]>)request.getAttribute("dakClosingAuthorityList");
+	        for (Object[] obj : list) {
+	    %>
+	        dakClosingAuthorityList.push({ value: "<%= obj[2] %>", label: "<%= obj[1] %>" });
+	    <% } %>
+	    
 	$('#exampleModalActionRequiredEdit').modal('show');
 	$('#ActionRequiredEditDakId').val(ActionRequiredDakId);
 	$('#DakDetailedActionRequiredEditActionVal').val(ActionForm);
@@ -1223,7 +1233,7 @@ $(function() {
 <%}%>	
 $('#ClosingAuthorityEdit').empty();
 
-for (var c = 0; c < Data.length; c++) {
+/* for (var c = 0; c < Data.length; c++) {
 	var option1 = $("<option></option>").attr("value", "P").text("P&C DO");
 	var option2 = $("<option></option>").attr("value", "K").text("D-KRM");
 	var option3 = $("<option></option>").attr("value", "A").text("D-Adm");
@@ -1244,6 +1254,22 @@ for (var c = 0; c < Data.length; c++) {
         option6.prop('selected', true);
     }
     $('#ClosingAuthorityEdit').append(option1, option2, option3, option4, option5, option6);
+} */
+
+for (var c = 0; c < Data.length; c++) {
+    $('#ClosingAuthorityEdit').empty(); // Clear existing options
+
+    for (var i = 0; i < dakClosingAuthorityList.length; i++) {
+        var option = $("<option></option>")
+            .attr("value", dakClosingAuthorityList[i].value)
+            .text(dakClosingAuthorityList[i].label);
+
+        if (Data[c][4] === dakClosingAuthorityList[i].value) {
+            option.prop("selected", true);
+        }
+
+        $('#ClosingAuthorityEdit').append(option);
+    }
 }
 
 $('.selectpicker').selectpicker('refresh');

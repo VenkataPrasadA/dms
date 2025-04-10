@@ -298,6 +298,6 @@ public interface DakDao {
 	public long updateLabReply(Long seldakCreateId, Long seldestinationId, String reply,String modifiedBy,String modifiedDate) throws Exception;
 	public Object[] SourceDetailData(String labCode) throws Exception;
 	public List<Object[]> selectedNewDakEmployees(long dakCreateId,String labCode) throws Exception;
-	
+	public List<Object[]> closingAuthorityList() throws Exception;
 	
 }

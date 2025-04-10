@@ -35,6 +35,8 @@ public interface ReportDao {
 	public List<Object[]> SmsReportList(String fromDate, String toDate) throws Exception;
 	public List<Object[]> dakPendingReportList() throws Exception;
 	public List<Object[]> holidayDateList() throws Exception;
-	public List<Object[]> GeAcknowledgeMembersList(String selDakId) throws Exception;
+	public List<Object[]> GetAcknowledgeMembersList(String selDakId) throws Exception;
 	public List<Object[]> GetReplyMembersList(String replydakId) throws Exception;
+	public List<Object[]> GetAssignedMembersList(String dakId) throws Exception;
+	public List<Object[]> GetSeekRepsonseMembersList(String dakId) throws Exception;
 }

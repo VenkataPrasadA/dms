@@ -32,12 +32,11 @@ public class SecurityConfiguration {
 	
 	@Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		
         http.authorizeHttpRequests(request -> 
         		request.requestMatchers("/").hasAnyRole("USER", "ADMIN")
 	        		   .requestMatchers("/webjars/**", "/resources/**", "/view/**", "/DakCreationforLabSubmit.htm/**", "/getDakData/**", "/labDakTrackingData/**", 
 	        					  "/ReplyForMainLab/**", "/ClosedByFullName.htm/**", "/ApprovedByFullName.htm/**", "/RepliedByPAndCFullName.htm/**", "/GetReplyMemberName.htm/**", 
-	        					  "/GetRepliedMemberName.htm/**", "/GetInitiatedByFullName.htm/**", "/GetAcknowledgedMembers.htm/**", "/GetAcknowledgeMembers.htm/**").permitAll()
+	        					  "/GetRepliedMemberName.htm/**", "/GetInitiatedByFullName.htm/**", "/GetAcknowledgedMembers.htm/**", "/GetAcknowledgeMembers.htm/**","/GetAssignedMembers.htm/**","/GetSeekResponseMembers.htm/**").permitAll()
 	        		   .anyRequest()
 	        		   .authenticated()
         		)

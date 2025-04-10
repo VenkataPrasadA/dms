@@ -176,13 +176,23 @@ public class ReportServiceImpl implements ReportService{
 	}
 	
 	@Override
-	public List<Object[]> GeAcknowledgeMembersList(String selDakId) throws Exception {
-		return dao.GeAcknowledgeMembersList(selDakId);
+	public List<Object[]> GetAcknowledgeMembersList(String selDakId) throws Exception {
+		return dao.GetAcknowledgeMembersList(selDakId);
 	}
 	
 	@Override
 	public List<Object[]> GetReplyMembersList(String replydakId) throws Exception {
 		return dao.GetReplyMembersList(replydakId);
+	}
+	
+	@Override
+	public List<Object[]> GetAssignedMembersList(String dakId) throws Exception {
+		return dao.GetAssignedMembersList(dakId);
+	}
+	
+	@Override
+	public List<Object[]> GetSeekRepsonseMembersList(String dakId) throws Exception {
+		return dao.GetSeekRepsonseMembersList(dakId);
 	}
 			
 }

@@ -225,7 +225,7 @@ display:none;
 			<% if (sourceList != null && sourceList.size() > 0) {
 		for (Object[] obj : sourceList) {
 		%>
-		<option value="<%=obj[0]%>" <% if (EnoteEditData!=null && EnoteEditData.getDestinationId().toString().equalsIgnoreCase(obj[0].toString())) { %>selected="selected"<% } %>><%=obj[1]%></option>
+		<option value="<%=obj[0]%>" <% if (EnoteEditData!=null && EnoteEditData.getDestinationId()!=null && EnoteEditData.getDestinationId().toString().equalsIgnoreCase(obj[0].toString())) { %>selected="selected"<% } %>><%=obj[1]%></option>
 		<%}}%>
 					</select>
 		     </div>

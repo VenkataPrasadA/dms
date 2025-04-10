@@ -30,6 +30,7 @@ public class DakMarking {
     private  Date ActionDueDate;
     private String DakAckStatus;
     private String DakAssignStatus;
+    private String MarkerAction;
     private int Favourites;
 	private String MsgType;
 	private String CreatedBy;

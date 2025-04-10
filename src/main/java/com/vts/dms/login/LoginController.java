@@ -72,12 +72,10 @@ public class LoginController
         if(version!="")
         {
         	if (Integer.parseInt(version.substring(0, version.indexOf('.'))) < 110) {
-    			System.out.println(Integer.parseInt(version.substring(0, version.indexOf('.'))));
     			req.setAttribute("browser", browser);
     			req.setAttribute("version", "yes");
     			req.setAttribute("versionint", Integer.parseInt(version.substring(0, version.indexOf('.'))));
     		} else {
-    			System.out.println(Integer.parseInt(version.substring(0, version.indexOf('.'))));
     			req.setAttribute("browser", browser);
     			req.setAttribute("version", "no");
     			req.setAttribute("versionint", Integer.parseInt(version.substring(0, version.indexOf('.'))));
