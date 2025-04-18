@@ -312,6 +312,7 @@ public class EnoteController {
 				    .InitiatedBy(dto.getInitiatedBy())
 				    .EnoteType(dto.getEnoteType())
 				    .IsDak(dto.getIsDak())
+				    .IsDraft(IsDraftVal)
 				    .ModifiedBy(dto.getModifiedBy())
 				    .ModifiedDate(dto.getModifiedDate())
 				    .dakEnoteDocument(dakEnoteDocument);

@@ -794,6 +794,7 @@ public class EnoteServiceImpl implements EnoteService{
 			enote.setInitiatedBy(dto.getInitiatedBy());
 			enote.setEnoteType(dto.getEnoteType());
 			enote.setIsDak(dto.getIsDak());
+			enote.setIsDraft(dto.getIsDraft());
 			if(dto!=null && dto.getIsDraft()!=null && dto.getIsDraft().equalsIgnoreCase("Y")) {
 			enote.setLetterDate(dto.getLetterDate());
 			enote.setDestinationId(dto.getDestinationId());

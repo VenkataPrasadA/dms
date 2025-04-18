@@ -82,10 +82,16 @@ background: transparent !important;
 	    Object[] MarkData=(Object[])request.getAttribute("MarkData");
 	    
 	    Object[] assigneddata=(Object[])request.getAttribute("assigneddata");
+		List<Object[]> dakClosingAuthorityList = (List<Object[]>)request.getAttribute("dakClosingAuthorityList");
+	    
+	    String LabCode=(String)session.getAttribute("LabCode");
 	    
 	    Object[] seekdata=(Object[])request.getAttribute("seekdata");
-	    String ClosingAuthority="-";
-	    if(dakReceivedList!=null && dakReceivedList[20]!=null ){
+	    String ClosingAuthority="";
+	    if(dakReceivedList[46]!=null){
+	    		ClosingAuthority = dakReceivedList[46].toString();
+	    }
+	   /*  if(dakReceivedList!=null && dakReceivedList[20]!=null ){
 	    	if(dakReceivedList[20].toString().equalsIgnoreCase("P")){
 	    		ClosingAuthority="P&C DO";
 	    	}else if(dakReceivedList[20].toString().equalsIgnoreCase("K")){
@@ -99,7 +105,7 @@ background: transparent !important;
 	    	}else if(dakReceivedList[20].toString().equalsIgnoreCase("O")){
 	    		ClosingAuthority="OTHERS";
 	    	}
-	    }
+	    } */
 		%>
 <div class="page-wrapper">
 <div class="card-header page-top">
@@ -121,7 +127,7 @@ background: transparent !important;
 				   <%}else if(viewfrom!=null && viewfrom.equalsIgnoreCase("DakPncList")) {%>
 				   <li class="breadcrumb-item"><a href="DakPNCList.htm"><i class="fa fa-envelope"></i> DAK P&C List</a></li>
 				   <%}else if(viewfrom!=null && viewfrom.equalsIgnoreCase("DakPncDoList")){ %>
-				    <li class="breadcrumb-item"><a href="DakPNCDOList.htm"><i class="fa fa-envelope"></i> DAK P&C DO List</a></li>
+				    <li class="breadcrumb-item"><a href="DakPNCDOList.htm"><i class="fa fa-envelope"></i> <%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")) {%>DAK PPA List<%}else{ %>DAK P&C DO List<%} %></a></li>
 				   <%}else if(viewfrom!=null && viewfrom.equalsIgnoreCase("DakPendingReplyList")){ %>
 				    <li class="breadcrumb-item"><a href="DakPendingReplyList.htm"><i class="fa fa-envelope"></i> DAK Pending Reply List</a></li>
 				   <%}else if(viewfrom!=null && viewfrom.equalsIgnoreCase("DakRepliedList")) {%>
@@ -5634,6 +5640,15 @@ function uploadDoc(dakIdValue,type,dakNoValue,RedirectVal,Source){
 		    }
 		}
 function EditAction(ActionRequiredDakId,ActionForm,dakno,source) {
+	
+	var dakClosingAuthorityList = [];
+    <% 
+        List<Object[]> list = (List<Object[]>)request.getAttribute("dakClosingAuthorityList");
+        for (Object[] obj : list) {
+    %>
+        dakClosingAuthorityList.push({ value: "<%= obj[2] %>", label: "<%= obj[1] %>" });
+    <% } %>
+    
 		$('#exampleModalActionRequiredEdit').modal('show');
 		$('#ActionRequiredEditDakId').val(ActionRequiredDakId);
 		$('#DakDetailedActionRequiredEditActionVal').val(ActionForm);
@@ -5699,7 +5714,7 @@ function EditAction(ActionRequiredDakId,ActionForm,dakno,source) {
 			          $('#ActionRequiredEdit').append(option);
 	<%}%>	
 	$('#ClosingAuthorityEdit').empty();
-	for (var c = 0; c < Data.length; c++) {
+	/* for (var c = 0; c < Data.length; c++) {
 		var option1 = $("<option></option>").attr("value", "P").text("P&C DO");
 		var option2 = $("<option></option>").attr("value", "K").text("D-KRM");
 		var option3 = $("<option></option>").attr("value", "A").text("D-Adm");
@@ -5720,6 +5735,22 @@ function EditAction(ActionRequiredDakId,ActionForm,dakno,source) {
 	        option6.prop('selected', true);
 	    }
 	    $('#ClosingAuthorityEdit').append(option1, option2, option3, option4, option5, option6);
+	} */
+	
+	for (var c = 0; c < Data.length; c++) {
+	    $('#ClosingAuthorityEdit').empty(); // Clear existing options
+
+	    for (var i = 0; i < dakClosingAuthorityList.length; i++) {
+	        var option = $("<option></option>")
+	            .attr("value", dakClosingAuthorityList[i].value)
+	            .text(dakClosingAuthorityList[i].label);
+
+	        if (Data[c][4] === dakClosingAuthorityList[i].value) {
+	            option.prop("selected", true);
+	        }
+
+	        $('#ClosingAuthorityEdit').append(option);
+	    }
 	}
 	$('.selectpicker').selectpicker('refresh');
 			    }

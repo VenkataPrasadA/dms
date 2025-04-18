@@ -217,6 +217,7 @@ button.deletePnCBtn:active {
 	SimpleDateFormat rdtf = fc.getRegularDateTime();
 	SimpleDateFormat sdtf = fc.getSqlDateAndTime();
 	SimpleDateFormat sdf = fc.getSqlDate();
+	String LabCode=(String)session.getAttribute("LabCode");
 	
 	String Action = (String)request.getAttribute("action");
 	String DakId=(String)request.getAttribute("dakid");
@@ -237,7 +238,6 @@ button.deletePnCBtn:active {
 	String redirview=(String)request.getAttribute("redirview");
 	long EmpId =(Long)session.getAttribute("EmpId"); 
 	String RedirectVal=(String)request.getAttribute("RedirectValAfterConsoReply");
-		System.out.println("redirectVallllllllll"+RedirectVal);
 	
 	%>
 <div class="card-header page-top">
@@ -261,7 +261,7 @@ button.deletePnCBtn:active {
 					<%if(RedirectVal!=null && RedirectVal.equalsIgnoreCase("PNCListRedir")){ %>
 					<a href="DakPNCList.htm">DAK P&C List</a>
 					<%}else if(RedirectVal!=null && RedirectVal.equalsIgnoreCase("PNCDOListRedir")){ %>
-					<a href="DakPNCDOList.htm">DAK P&C DO List</a>
+					<a href="DakPNCDOList.htm"><%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")) {%>DAK PPA List <%}else{ %>DAK P&C DO List<%} %></a>
 					<%}else if(RedirectVal!=null && RedirectVal.equalsIgnoreCase("DakPendingPNCListRedir")){ %>
 					<a href="DakPNCList.htm">DAK Pending P & C List</a>
 					<%} %>

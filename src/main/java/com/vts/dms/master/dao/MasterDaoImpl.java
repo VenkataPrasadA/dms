@@ -516,7 +516,7 @@ public class MasterDaoImpl implements MasterDao {
 	public Long DivisionId(String EmpId) throws Exception {
 		Query query=manager.createNativeQuery(DIVISIONID);
 		query.setParameter("empid", EmpId);
-		BigInteger DivisionId = (BigInteger) query.getSingleResult();
+		Long DivisionId = (Long) query.getSingleResult();
 		return DivisionId.longValue();
 	}
 

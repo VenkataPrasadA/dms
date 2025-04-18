@@ -291,6 +291,8 @@ margin-top: -20px !important;
 	List<Object[]> DakMemberGroup = (List<Object[]>) request.getAttribute("DakMemberGroup");
 	
 	List<Object[]> employeeList = (List<Object[]>)request.getAttribute("employeeList");
+	
+	List<Object[]> dakClosingAuthorityList = (List<Object[]>)request.getAttribute("dakClosingAuthorityList");
 	%>
 
 
@@ -597,12 +599,18 @@ margin-top: -20px !important;
 										<label class="control-label">Closing Authority<span class="mandatory" style="color: red; font-weight: normal;">*</span></label>
 										<select class="form-control selectpicker custom-select" id="ClosingAuthorityInitId" required="required" data-live-search="true" name="closingAuthorityVal">
 											<option value="select" disabled="disabled" selected>Select</option>
+											<%if(dakClosingAuthorityList!=null && !dakClosingAuthorityList.isEmpty()){ 
+											for(Object[] obj: dakClosingAuthorityList){
+											%>
+											<option value="<%=obj[2]%>"><%=obj[1]%></option>
+											<%}} %>
+											<!-- <option value="select" disabled="disabled" selected>Select</option>
 											<option value="P">P&C DO</option>
 											<option value="K">D-KRM</option>
 											<option value="A">D-Adm</option>
 											<option value="R">DFMM</option>
 											<option value="Q">DQA</option>
-											<option value="O">Others</option>
+											<option value="O">Others</option> -->
 										</select>
 									</div>
 								</div>

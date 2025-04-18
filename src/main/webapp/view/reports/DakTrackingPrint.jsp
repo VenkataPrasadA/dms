@@ -64,6 +64,7 @@ font-size: 12px;
     List<Object[]> dakTrackingPrintData=(List<Object[]>)request.getAttribute("DakTrackingPrintData");
     DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
     DateFormat outputFormat = new SimpleDateFormat("MMM dd, yyyy, h:mm a");
+    String LabCode=(String)session.getAttribute("LabCode");
     
 String InitiatedBy = null;String InitiatedDateFormatted = null;String DistributedDateFormatted = null;
 String AckBy = null;String AckDateFormatted = null;
@@ -237,9 +238,9 @@ String ClosedBy = null;String ClosedDateFormatted = null;
 <%if( obj[20]!=null && "P".equalsIgnoreCase(obj[20].toString()) && !"RM".equalsIgnoreCase(Status) && ("RP".equalsIgnoreCase(Status) || "FP".equalsIgnoreCase(Status) || "AP".equalsIgnoreCase(Status)  || "DC".equalsIgnoreCase(Status) )){ %>													
       
          <tr>
-     <td colspan="2" style="border: 1px solid black; text-align: left; font-weight: 700; height: 62px">&nbsp;&nbsp;P&C DO Replied By </td>
+     <td colspan="2" style="border: 1px solid black; text-align: left; font-weight: 700; height: 62px">&nbsp;&nbsp;<%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")){ %>PPA<%}else{ %>P&C DO<%} %>  Replied By </td>
   
-      <td colspan="8" style="border: 1px solid black; text-align: left; font-weight: 700;height: 62px "><span style="font-weight: normal;">&nbsp;&nbsp;<%=PNCDOReplyBy%> <br> <span style="font-size: 13px;"> &nbsp; [P&C DO Replied on :</span> <span class="spanDate"><%=PNCDOReplyDateFormatted%></span><span style="font-size: 13px;"> ]</span></span></td>
+      <td colspan="8" style="border: 1px solid black; text-align: left; font-weight: 700;height: 62px "><span style="font-weight: normal;">&nbsp;&nbsp;<%=PNCDOReplyBy%> <br> <span style="font-size: 13px;"> &nbsp; [<%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")){ %>PPA<%}else{ %>P&C DO<%} %>  Replied on :</span> <span class="spanDate"><%=PNCDOReplyDateFormatted%></span><span style="font-size: 13px;"> ]</span></span></td>
             
       </tr> 
  <% } %>

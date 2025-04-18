@@ -130,6 +130,7 @@ background-color: #005C97 !important;
 		    String Username =(String)session.getAttribute("Username"); 
 		    String LoginType =(String)session.getAttribute("LoginTypeDms"); 
 		    String LoginAs=(String)session.getAttribute("LoginAs");
+		    String LabCode=(String)session.getAttribute("LabCode");
 		    
 		    String EmpName =(String)session.getAttribute("EmpName"); 
 		    String EmpDesig =(String)session.getAttribute("EmpDesig"); 
@@ -193,7 +194,11 @@ background-color: #005C97 !important;
 	    		LoginTypeName="2-IC";
 	    	}
 	    	if(LoginTypeCode.equalsIgnoreCase("E")){
-	    		LoginTypeName="P&C DO";
+	    		if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")){
+	    			LoginTypeName="PPA";
+	    		}else{
+	    			LoginTypeName="P&C DO";
+	    		}
 	    	}
 	    	if(LoginTypeCode.equalsIgnoreCase("H")){
 	    		LoginTypeName="HQ";

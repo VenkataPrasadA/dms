@@ -654,6 +654,7 @@ input:checked + .sliderinfo:before {
 <body>
  <% long EmpId =(Long)session.getAttribute("EmpId"); 
     String loginType =(String)session.getAttribute("LoginTypeDms");
+    String LabCode=(String)session.getAttribute("LabCode");
  %>
    <!----------------------------------------------------  Dak Markup Modal Start  ----------------------------------------------------------->
    <div class="modal bd-example-modal-lg" tabindex="-1" role="dialog" id="exampleModalmarkgroup" aria-labelledby="exampleModalmarkTitle" aria-hidden="true">
@@ -669,7 +670,7 @@ input:checked + .sliderinfo:before {
  	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-	 	         <b style="color: white;">DakId:</b> <span style="color: white;" id="dakMarkingpendingListDakNo"></span> &nbsp;&nbsp; <b style="color: white;">Source :</b> <span style="color: white;" id="dakMarkingpendingListSource"></span>
+	 	         <b style="color: white;">DAKId:</b> <span style="color: white;" id="dakMarkingpendingListDakNo"></span> &nbsp;&nbsp; <b style="color: white;">Source :</b> <span style="color: white;" id="dakMarkingpendingListSource"></span>
  	         </h3>
   	        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
   	          <span aria-hidden="true">&times;</span>
@@ -770,7 +771,7 @@ input:checked + .sliderinfo:before {
 	 	    <div class="modal-content" style="width: 100%;">
 	 	      <div class="modal-header" style="background-color: #114A86;">
 	 	        <h3 class="modal-title" id="exampleModalLong2Title" style="color:white;"><b>DAK Distribution</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-	 	         <b>DakId:</b> <span style="color: white;" id="dakpendingListDakNo"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	 	         <b>DAKId:</b> <span style="color: white;" id="dakpendingListDakNo"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 	 	         <b>Source :</b> <span style="color: white;" id="dakpendingListSource"></span></h3>
 	  	        <button type="button" class="close" style="color:white;" data-dismiss="modal" aria-label="Close">
 	  	          <span aria-hidden="true">&times;</span>
@@ -845,7 +846,7 @@ input:checked + .sliderinfo:before {
  	  <div class="modal-dialog modal-dialog-centered modal-dialog-jump" role="document" style="width:1000px;">
  	    <div class="modal-content">
   	      <div class="modal-body">
-  	       <h3 class="modal-title" id="exampleModalLong2Title" style="background-color: " ><b>DakId:</b> <span style="color: #114A86;" id="dakAttachmentDakNo"></span> &nbsp;&nbsp; <b>Source :</b> <span style="color: #114A86;" id="dakAttachmentSource"></span>
+  	       <h3 class="modal-title" id="exampleModalLong2Title" style="background-color: " ><b>DAKId:</b> <span style="color: #114A86;" id="dakAttachmentDakNo"></span> &nbsp;&nbsp; <b>Source :</b> <span style="color: #114A86;" id="dakAttachmentSource"></span>
  	         </h3>
   	      <div class="tabs">
         <div class="tabby-tab">
@@ -1006,7 +1007,7 @@ input:checked + .sliderinfo:before {
 		         <button class="btn btnDakDetailsPreview"  id="model-card-header" >DAK Details</button>
 		         <button class="btn btnReplyDetailsPreview" id="model-card-header" style="display:none;" >Marker Reply</button>
 		         <button class="btn btnCWReplyDetailsPreview" id="model-card-header" style="display:none;" >CW Reply</button>
-		         <button class="btn btnPNCDOReplyDetailsPreview" id="model-card-header" style="display:none;" >P&C DO Reply</button>
+		         <button class="btn btnPNCDOReplyDetailsPreview" id="model-card-header" style="display:none;" ><%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")){ %>PPA<%}else{ %>P&C DO<%} %>   Reply</button>
 		          <button class="btn btnSeekResponseReplyDetailsPreview" id="model-card-header" style="display:none;" >Seek Response Reply</button>
 		         <h6 class="modal-title" id="exampleModalLongTitle" style="margin-top: 8px; color: white;">
 		          &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -2699,7 +2700,6 @@ function Preview(a,value) {
 	//$('#assigned-details').appendTo('body').modal('show');
 	$('#assigned-details').modal('show');
 	var DakId=$('#DakId'+a).val();
-	console.log("dakidfffffffff:"+DakId);
 	
 	
 	$('[id^="buttonbackground"]').css('background-color', '');
@@ -2804,7 +2804,11 @@ function Preview(a,value) {
 				 $('#ActionTime').html("NA");
 			     }
 			
-			 if(result[20]!=null &&  result[20]=="P"){
+			 if(result[27]!=null){
+				  $('#ClosingAuthority').html(result[27]);
+		         }
+			 
+			 /* if(result[20]!=null &&  result[20]=="P"){
 			  $('#ClosingAuthority').html("P&C DO");
 	         }else if(result[20]!=null &&  result[20]=="A"){
 		      $('#ClosingAuthority').html("Admin");
@@ -2816,7 +2820,7 @@ function Preview(a,value) {
 		      $('#ClosingAuthority').html("Others");
 	         }else{
 		      $('#ClosingAuthority').html("ERROR");
-	         }
+	         } */
 			 
 			 
 			 if(result[21]!=null &&  result[21]=="R"){
@@ -5077,8 +5081,6 @@ function FacilitatorsReplyOfSpecificMarker(DakMarkingId,DakId,loggedInEmpId){
 	  $('.NameAndDesigOfMarker').empty();
 	  $('.FacilitaorsReplyOfSpecificMarkerData').empty();
 	  $('#FacilitaorsReplyOfSpecificMarkerModal').modal('show');
-	  console.log("######"+DakMarkingId);
-	  console.log("@@@@@@"+DakId);
     $.ajax({
         type: "GET",
         url: "GetAllCSWReplyByMarkingIdDetails.htm",

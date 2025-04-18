@@ -1,6 +1,5 @@
 package com.vts.dms.header.dao;
 
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -106,12 +105,10 @@ public class HeaderDaoImpl implements HeaderDao {
 
 	@Override
 	public Boolean getRoleAccess(String logintype, String formModuleId) throws Exception {
-		System.out.println("logintype:"+logintype);
-		System.out.println("formModuleId:"+formModuleId);
 		Query query = manager.createNativeQuery("SELECT COUNT(FormRoleAccessId) FROM dak_form_role_access a,login b,dak_form_detail c WHERE a.FormRoleId=b.FormRoleId AND a.FormDetailId=c.FormDetailId AND b.LoginTypeDms=:logintype AND a.FormDetailId =:formModuleId AND c.Isactive=1");
 		query.setParameter("logintype",logintype);
 		query.setParameter("formModuleId", formModuleId);
-		List<BigInteger> result = query.getResultList();
+		List<Long> result = query.getResultList();
 		if (result.get(0).intValue()==0)return false;
 		else return true;
 	}

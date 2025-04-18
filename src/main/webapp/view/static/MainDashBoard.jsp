@@ -511,7 +511,7 @@ if(LoginAs!=null){
 }else{
 	LoginTypeCode=LoginType;
 }
-
+String LabCode=(String)session.getAttribute("LabCode");
 Map<String, List<Object[]>> multiValueMap = (Map<String, List<Object[]>>) request.getAttribute("multiValueMap");
 
 Map<String, List<Object[]>> multiGroupValueMap = (Map<String, List<Object[]>>) request.getAttribute("multiGroupValueMap");
@@ -1879,7 +1879,7 @@ new Chart("myThirdChart", {
   }
 }); --%>
 
-var xValues = ["Initiated", "Distributed", "Replied", "P&C DO", "Approved" ,"Closed"];
+var xValues = ["Initiated", "Distributed", "Replied", <%if(LabCode!=null && LabCode.equalsIgnoreCase("ADE")){%>"PPA"<%}else{%>"P&C DO"<%}%>, "Approved" ,"Closed"];
 var yValues = [<%if(TotalCountData!=null &&TotalCountData[0]!=null){%><%=TotalCountData[0]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[3]!=null){%><%=TotalCountData[3]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[5]!=null){%><%=TotalCountData[5]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[6]!=null){%><%=TotalCountData[6]%><%}%>, <%if(TotalCountData!=null &&TotalCountData[7]!=null){%><%=TotalCountData[7]%><%}%>,<%if(TotalCountData!=null &&TotalCountData[8]!=null){%><%=TotalCountData[8]%><%}%>];
 var barColors = ["rgb(0, 123, 255)","rgb(185, 28, 214)", "rgb(0, 0, 255)","rgb(161, 118, 39)","rgb(34, 139, 34)","rgb(249, 99, 2)"];
 

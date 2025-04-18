@@ -14,7 +14,8 @@ import java.util.Set;
 @Table(name = "login")
 public class Login {
 
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long LoginId;
     private String Username;
     private String Password;

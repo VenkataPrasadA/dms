@@ -1,6 +1,5 @@
 package com.vts.dms.dao;
 
-import java.math.BigInteger;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -132,7 +131,7 @@ public class DmsDaoImp  implements DmsDao {
 			Query query = manager.createNativeQuery(LOGINVALIDATION);
 			query.setParameter("user",User);
 			query.setParameter("password",Password);
-			BigInteger LoginValidation = (BigInteger) query.getSingleResult();
+			Long LoginValidation = (Long) query.getSingleResult();
 			return LoginValidation.longValue();
 		}
 		
@@ -246,8 +245,8 @@ public class DmsDaoImp  implements DmsDao {
 			Query query = manager.createNativeQuery(LASTLOGINEMPID);
 			query.setParameter("loginid", LoginId);
 			 Object result = query.getSingleResult(); 
-			    if (result instanceof BigInteger) {
-			        return ((BigInteger) result).longValue();
+			    if (result instanceof Long) {
+			        return ((Long) result).longValue();
 			    } else if (result instanceof Long) {
 			        return (Long) result;
 			    } else {
@@ -265,7 +264,7 @@ public class DmsDaoImp  implements DmsDao {
 		public String DesgId(String Empid) throws Exception {
 			Query query = manager.createNativeQuery(DESGID);
 			query.setParameter("empid", Empid);
-			BigInteger DesgId = (BigInteger) query.getSingleResult();
+			Long DesgId = (Long) query.getSingleResult();
 			return DesgId.toString();
 		}
 
@@ -313,7 +312,7 @@ public class DmsDaoImp  implements DmsDao {
 			try {
 			Query query = manager.createNativeQuery(MAILINITIATEDCOUNT);
 		    query.setParameter("trackingType", TrackingType);
-		    BigInteger countResult = (BigInteger) query.getSingleResult();
+		    Long countResult = (Long) query.getSingleResult();
 	        return countResult.longValue();
 		 } catch (Exception e) {
 			 e.printStackTrace();
@@ -328,7 +327,7 @@ public class DmsDaoImp  implements DmsDao {
 			logger.info(new Date() + "Inside GetDailyPendingReplyCount");
 			try {
 			 Query query = manager.createNativeQuery(DAILYEXPECTEDPENDINGREPLYCOUNT);
-			 BigInteger countResult = (BigInteger) query.getSingleResult();
+			 Long countResult = (Long) query.getSingleResult();
 		        return countResult.longValue();
 			 } catch (Exception e) {
 				 e.printStackTrace();
@@ -360,7 +359,7 @@ public class DmsDaoImp  implements DmsDao {
 			logger.info(new Date() + "Inside GetWeeklyExpectedPendingReplyCount");
 			try {
 			 Query query = manager.createNativeQuery(WEEKLYEXPECTEDPENDINGREPLYCOUNT);
-			 BigInteger countResult = (BigInteger) query.getSingleResult();
+			 Long countResult = (Long) query.getSingleResult();
 		        return countResult.longValue();
 			 } catch (Exception e) {
 				 e.printStackTrace();
@@ -374,7 +373,7 @@ public class DmsDaoImp  implements DmsDao {
 			logger.info(new Date() + "Inside GetSummaryOfDailyDistributedCount");
 			try {
 				 Query query = manager.createNativeQuery(SUMMARYDISTRIBUTEDCOUNT);
-				 BigInteger countResult = (BigInteger) query.getSingleResult();
+				 Long countResult = (Long) query.getSingleResult();
 			        return countResult.longValue();
 				 } catch (Exception e) {
 					    e.printStackTrace();
@@ -938,7 +937,7 @@ public class DmsDaoImp  implements DmsDao {
 			try {
 			Query query = manager.createNativeQuery(SMSINTIATEDCOUNT);
 		    query.setParameter("smsTrackingType", smsTrackingType);
-		    BigInteger countResult = (BigInteger) query.getSingleResult();
+		    Long countResult = (Long) query.getSingleResult();
 	        return countResult.longValue();
 		  } catch (Exception e) {
 			 e.printStackTrace();
@@ -981,7 +980,7 @@ public class DmsDaoImp  implements DmsDao {
 			try {
 			Query query = manager.createNativeQuery(GETTYPEOFHOSTCOUNT);
 		    query.setParameter("hostType", hostType);
-		    BigInteger getTypeOfHostCount = (BigInteger) query.getSingleResult();
+		    Long getTypeOfHostCount = (Long) query.getSingleResult();
 	        return getTypeOfHostCount.longValue();
 		  } catch (Exception e) {
 			 e.printStackTrace();
