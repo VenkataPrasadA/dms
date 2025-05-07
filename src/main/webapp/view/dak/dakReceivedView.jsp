@@ -190,7 +190,7 @@ background: transparent !important;
  								<button  type="button"  class="btn btn-sm icon-btn btn-hover color-5"  onclick="return replyModalOfMarker('<%=dakReceivedList[1] %>','<%=LoginEmpId%>','<%=dakReceivedList[32] %>','<%=dakReceivedList[9] %>','<%=dakReceivedList[4] %>','<%=MarkData[0] %>')" data-toggle="tooltip" data-placement="top" title="Reply">
  								&nbsp; Marker Reply &nbsp;
 								</button>
- 						<%}%>   
+ 						    <%}%>   
  						    <%if(MarkData[1]!=null && MarkData[1].toString().equalsIgnoreCase("Y") && !dakReceivedList[6].toString().equalsIgnoreCase("RM") && !dakReceivedList[6].toString().equalsIgnoreCase("RP") && !dakReceivedList[6].toString().equalsIgnoreCase("FP") && !dakReceivedList[6].toString().equalsIgnoreCase("AP") && !dakReceivedList[6].toString().equalsIgnoreCase("DC") ){ %>
  						        <button type="button"  class="btn btn-sm icon-btn btn-hover color-9" onclick="return Assign(<%=dakReceivedList[1]%>,<%=MarkData[0] %>,'<%=dakReceivedList[9] %>','<%=dakReceivedList[4] %>','DakReceivedViewList')" data-toggle="tooltip" data-placement="top" title="Assign">
  						        &nbsp; Assign &nbsp;
@@ -199,7 +199,7 @@ background: transparent !important;
  							<%if(MarkData[3]!=null && !MarkData[3].toString().equalsIgnoreCase("N")){ %>
  						    <span class="MsgByDir">
  							<%if(MarkData[3].toString().equalsIgnoreCase("D")){ %>
- 								    Pls Discuss With Director
+ 								     Pls Discuss With Director
  							<%}else if(MarkData[3].toString().equalsIgnoreCase("E")){ %>
  									 Noted By Director
  							<%}%>

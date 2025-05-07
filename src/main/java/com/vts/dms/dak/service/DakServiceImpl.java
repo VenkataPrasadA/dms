@@ -2304,6 +2304,7 @@ public static int saveFile1(Path uploadPath, String fileName, MultipartFile mult
 				seekresponseinsert.setSeekEmpId(Long.parseLong(dakCaseWorker[i]));
 				seekresponseinsert.setDakId(dto.getDakId());
 				seekresponseinsert.setSeekAssignerId(dto.getSeekAssignerId());
+				seekresponseinsert.setSeekFrom(dto.getSeekFrom());
 				seekresponseinsert.setRemarks(dto.getRemarks());
 				seekresponseinsert.setReplyStatus(dto.getReplyStatus());
 				seekresponseinsert.setCreatedBy(dto.getCreatedBy());

@@ -1134,7 +1134,8 @@ textarea {
   	      			<input type="hidden" name="fromDateFetch" value=<%=frmDt %>>
 					<input type="hidden" name="toDateFetch" value=<%=toDt %>>
 					<input type="hidden" name="PageValBySeekRepsonse" id="PageRedirBySeekRepsonse" value="">
-  	      			<input type="hidden" name="RowValBySeekRepsonse" id="RowRedirBySeekRepsonse" value=""> 
+  	      			<input type="hidden" name="RowValBySeekRepsonse" id="RowRedirBySeekRepsonse" value="">
+  	      			<input type="hidden" name="seekFrom" value="A"> 
   	      		  <div class="col-md-12"  align="center">
   	      		  <br><br>
   	      			<input type="button" class="btn btn-primary btn-sm submit " id="sub" value="Submit" name="sub"  onclick="return DakSeekResponseSubmit()"> 

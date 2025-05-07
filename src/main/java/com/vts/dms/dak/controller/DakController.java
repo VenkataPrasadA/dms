@@ -172,9 +172,12 @@ public class DakController {
   				ActionId=Integer.parseInt(arr[0]);
   				ActionCode=arr[1].trim();
   			}
-			 String DakLinkId[]=(String[])req.getParameterValues("DakLinkId");
+			
+			String DakLinkId[]=(String[])req.getParameterValues("DakLinkId");
 			String PrjDirectorEmpId = req.getParameter("projectDirectorEmpId");
 			String markedEmps[]=(String[])req.getParameterValues("empid");//(Ex:-5/1 12/1 14/1...) Selection of Individual Marking
+			
+			
 				if(PrjDirectorEmpId!=null &&  PrjDirectorEmpId.trim()!="" && !PrjDirectorEmpId.trim().isEmpty()) {
 					String EmpSel = PrjDirectorEmpId + "/-1";
 					if(markedEmps == null) {
@@ -5560,12 +5563,14 @@ public class DakController {
 				String SeekResponseRedirectVal=req.getParameter("SeekResponseRedirectVal");
 				String redirectedvalue=req.getParameter("redirectedvalue");
 				String SeekResponseremarks=req.getParameter("SeekResponseremarks");
+				String seekFrom=req.getParameter("seekFrom");
 				if(redirectedvalue!=null) {
 					redir.addAttribute("redirectedvalue", redirectedvalue);
 				}
 				DakSeekResponseDto dto=new DakSeekResponseDto();
 				dto.setDakId(Long.parseLong(DakId));
 				dto.setSeekAssignerId(Long.parseLong(DakMarkingIdsel));
+				dto.setSeekFrom(seekFrom);
 				dto.setRemarks(SeekResponseremarks);
 				dto.setReplyStatus("N");
 				dto.setCreatedBy(req.getUserPrincipal().getName());
@@ -6449,6 +6454,7 @@ public class DakController {
 			Object[] MailSentDetails=null;
 			try {
 				String HostType=(String)req.getParameter("value");
+				System.out.println("HostType:"+HostType);
 				if(HostType!=null) {
 					MailSentDetails=service.MailSentDetails(HostType);
 				}else {

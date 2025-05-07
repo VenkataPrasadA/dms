@@ -963,6 +963,7 @@ List<Object[]> sourceList=(List<Object[]>)request.getAttribute("SourceList");
 					<input type="hidden" name="toDateFetch" value=<%=toDt %>>
 					<input type="hidden" name="PageValBySeekRepsonse" id="PageRedirBySeekRepsonse" value="">
   	      			<input type="hidden" name="RowValBySeekRepsonse" id="RowRedirBySeekRepsonse" value=""> 
+  	      			<input type="hidden" name="seekFrom" value="R">
   	      		
 					
 					

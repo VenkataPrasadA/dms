@@ -652,7 +652,7 @@ String RedirFromCommon = (String) request.getAttribute("redirectVal");
 						<div class="timeline-row">
 						<div class="timeline-time">
 						<%if(obj[25]!=null){  
-						 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+						 DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                               Date date = inputFormat.parse(obj[25].toString());
         
 					        DateFormat outputFormat = new SimpleDateFormat("MMM dd, yyyy, h:mm a");

@@ -236,7 +236,7 @@ public class DakDaoImpl implements DakDao {
     private static final String INITIATEDBYEMPLOYEELIST="SELECT a.EmpId,a.EmpName,b.Designation,a.EmpNo FROM employee a,employee_desig b WHERE a.labcode=:lab AND a.IsActive=1 AND a.DesigId=b.DesigId AND a.DivisionId=:divisionId ORDER BY CASE WHEN a.Srno = 0 THEN 1 ELSE 0 END, a.Srno ASC ";
     private static final String ENOTEMARKERREPLYDATA="SELECT a.DakId,a.DakNo,a.RefDate,a.RefNo,c.EmpId,c.Remarks,a.ActionId,c.DakReplyId,a.DakStatus,a.Subject FROM dak a,dak_reply c WHERE a.DakId=c.DakId AND a.DakId=:dakId AND c.EmpId=:empId";
     private static final String DAKMARKERENOTEREPLYATTACHMENTDATA="SELECT ReplyId, filepath,ReplyAttachmentId,filename  FROM dak_reply_attachment WHERE ReplyId=:dakReplyId";
-    private static final String MAILSENTDETAILS="SELECT a.UserName,a.Password FROM mail_configuration a WHERE a.TypeOfHost=:TypeOfHost";
+    private static final String MAILSENTDETAILS="SELECT a.UserName,a.Password FROM mail_configuration a WHERE a.TypeOfHost=:TypeOfHost and a.IsActive='1'";
     private static final String DRONAMAILRECEIVEDDETAILS="SELECT EmpId,EmpName,DronaEMail FROM employee WHERE IsActive=1 AND DronaEmail IS NOT NULL AND EmpId!=:empId";
     private static final String LABMAILRECEIVEDDETAILS="SELECT EmpId,EmpName,EMail FROM employee WHERE IsActive=1 AND Email IS NOT NULL AND EmpId!=:empId";
     private static final String GETEMPNAME="SELECT CONCAT(IFNULL(CONCAT(TRIM(e.empname),', '),''), d.Designation) FROM employee e ,employee_desig d WHERE e.EmpId=:empId AND  e.DesigId=d.DesigId";
@@ -909,7 +909,7 @@ public class DakDaoImpl implements DakDao {
 		}
 
 		SerialNo += ")) c   WHERE a.empid = c.empid AND a.desigid = b.desigid AND a.labcode='" + lab
-				+ "' AND a.IsActive='1' AND c.IsActive='1' GROUP BY a.empid ORDER BY SrNo";
+				+ "' AND a.IsActive='1' AND c.IsActive='1' GROUP BY a.empid, a.empname, b.designation, c.dakmembertypeid, a.SrNo ORDER BY SrNo";
 		Query query = manager.createNativeQuery(SerialNo);
 		List<Object[]> dakData = (List<Object[]>) query.getResultList();
 		return dakData;
