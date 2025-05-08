@@ -673,7 +673,7 @@ margin-top: -20px !important;
 										<div class="card" id="scrollable-content" style="width: 100%; height: 100px; ">
 										<div class="card-body">
 											<input type="hidden" name="EmpIdGroup" id="EmpIdGroup" value="" />
-										<div class="row" id="GroupEmp"style="" >
+										<div class="row" id="GroupEmp" style="" >
 									
 	  	      									</div>
 										</div> 

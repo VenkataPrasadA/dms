@@ -21,6 +21,7 @@ public class DakSeekResponse {
 	private Long DakId;
 	private Long SeekAssignerId;
 	private Long SeekEmpId;
+	private String SeekFrom;
 	private String Remarks;
 	private String Reply;
 	private String ReplyStatus;
