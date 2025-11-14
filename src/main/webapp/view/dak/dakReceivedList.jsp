@@ -2485,7 +2485,7 @@ function CSWReplyOfParticularMarkerPreview(DakMarkingId,DakId,loggedInEmpId){
 					          formgroup1.append(replyCSWDiv);   
 					          innerCSWReplyDiv.append(formgroup1);
 					          dynamicCSWReplyDiv.append(innerCSWReplyDiv);
-
+ 
 					            // Check if row[7] count i.e DakReplyAttachCount is more than 0
 						          if (data[7] > 0) {
 						        	  // Call a function and pass row[2] i.e DakAssignReplyId

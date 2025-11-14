@@ -280,6 +280,7 @@ public class DakController {
 				dak.setClosingAuthority(req.getParameter("closingAuthorityVal"));
 				dak.setDivisionCode(DivisionCode);
 				dak.setLabCode(LabCode);
+				dak.setSourceLabCode(LabCode);
 				dak.setCreatedBy(req.getUserPrincipal().getName());
 				dak.setCreatedDate(sdf1.format(new Date()));
 				dak.setIsActive(1);

@@ -1166,7 +1166,7 @@ public static int saveFile1(Path uploadPath, String fileName, MultipartFile mult
             	fileNamesOfReattachments = dakReplyDto.getDakAssignerReAttachs();
             	for (int i = 0; i < fileNamesOfReattachments.length; i++) {
             		String dakNoPath = DakDetails.getDakNo().replace("/", "_"); // Replace '/' with '_'
-                	String DynamicPath = Paths.get(dakNoPath, "Outbox").toString(); // Create the path with Inbox folder
+                	String DynamicPath = Paths.get(dakNoPath, "Outbox").toString(); // Create the path with Outbox folder
                 	DakReplyAttach ReplyAttachModel = new DakReplyAttach();
                		ReplyAttachModel.setReplyId(DakReplyAddResult);
                		ReplyAttachModel.setEmpId(dakReplyDto.getEmpId());
