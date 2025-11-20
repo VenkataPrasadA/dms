@@ -60,6 +60,7 @@ public class DakDaoImpl implements DakDao {
 	private static final String LETTERTYPELIST = "select lettertypeid,lettertype from dak_letter_type";
 	private static final String RELEVANTLIST = "select projectid,projectcode,ProjectShortName from project_master where isactive='1' AND LabCode=:lab";
     private static final String DAKPENDINGDISTRIBUTIONLIST = "CALL Dms_DakPendingDistributionList(:DivisionCode,:LabCode,:UserName)";
+    private static final String DAKPENDINGDISTRIBUTIONADELIST = "CALL Dms_DakPendingDistributionList_Ade(:LabCode,:UserName)";
 	private static final String EMPIDCOUNTOFCOMPARISON = "SELECT COUNT(EmpId) FROM dak_marking WHERE DakId=:dakid AND EmpId=:prjDirEmpId";
 	private static final String DELETEPREVPRJDIREMPID = "DELETE FROM dak_marking WHERE DakId=:dakid AND EmpId=:prjdirempid ";
 	private static final String DAKDATA = "FROM DakMain WHERE DakId=:dakId";
@@ -355,8 +356,16 @@ public class DakDaoImpl implements DakDao {
 	public List<Object[]> DakPendingDistributionList(String DivisionCode,String LabCode,String UserName) throws Exception {
 		logger.info(new Date() + "Inside DAO DakPendingDistributionList");
 		try {
-			 Query query = manager.createNativeQuery(DAKPENDINGDISTRIBUTIONLIST);
-			 query.setParameter("DivisionCode", DivisionCode);
+			 String pendingQuery = "";
+			 if(LabCode.equalsIgnoreCase("ADE")) {
+				 pendingQuery = DAKPENDINGDISTRIBUTIONADELIST;
+			 }else {
+				 pendingQuery = DAKPENDINGDISTRIBUTIONLIST;
+			 }
+			 Query query = manager.createNativeQuery(pendingQuery);
+			 if(!LabCode.equalsIgnoreCase("ADE")) {
+				 query.setParameter("DivisionCode", DivisionCode);
+			 }
 			 query.setParameter("LabCode", LabCode);
 			 query.setParameter("UserName", UserName);
 			List<Object[]> resultList = new ArrayList<Object[]>();
@@ -4570,6 +4579,25 @@ public List<Object[]> closingAuthorityList() throws Exception {
 	} catch (Exception e) {
 		e.printStackTrace();
 		logger.error(new Date()+"Inside the closingAuthorityList()",e);
+		return null;
+	}
+}
+
+
+private static final String DAKCLOSINGLIST="CALL Dms_DakClosingList(:fromDate,:toDate,:statusValue,:userName)";
+@Override
+public List<Object[]> dakClosingList(String fromDate, String toDate, String statusValue, String userName)throws Exception {
+	logger.info(new Date()+"Inside the dakClosingList()");
+	try {
+		Query query=manager.createNativeQuery(DAKCLOSINGLIST);
+		query.setParameter("fromDate", fromDate);
+		query.setParameter("toDate", toDate);
+		query.setParameter("statusValue", statusValue);
+		query.setParameter("userName", userName);
+		return (List<Object[]>)query.getResultList();
+	} catch (Exception e) {
+		e.printStackTrace();
+		logger.error(new Date()+"Inside the dakClosingList()",e);
 		return null;
 	}
 }

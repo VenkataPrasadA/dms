@@ -251,4 +251,5 @@ public interface DakService {
 	public long newinsertDak(DakAddDto dakdto, Long empId, String[] dakLinkId) throws Exception;
 	public List<Object[]> selectedNewDakEmployees(long dakCreateId,String labCode) throws Exception;
 	public List<Object[]> closingAuthorityList() throws Exception;
+	public List<Object[]> dakClosingList(String fromDate, String toDate, String statusValue, String name)throws Exception;
 }

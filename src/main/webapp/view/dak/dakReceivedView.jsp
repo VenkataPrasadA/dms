@@ -142,6 +142,8 @@ background: transparent !important;
 				    <li class="breadcrumb-item"><a href="DakSearch.htm"><i class="fa fa-envelope"></i> DAK Search </a></li>
 				   <%}else if(viewfrom!=null && viewfrom.equalsIgnoreCase("DakTracking")) {%>
 				   <li class="breadcrumb-item"><a href="DakTracking.htm"><i class="fa fa-envelope"></i> DAK Tracking </a></li>
+				   <%}else if(viewfrom!=null && viewfrom.equalsIgnoreCase("DakClosingList")){ %>
+				   <li class="breadcrumb-item"><a href="DakClosingList.htm"><i class="fa fa-envelope"></i> DAK Closing List</a></li>
 				   <%} %>
 				    <li class="breadcrumb-item active">DAK View</li>
 				  </ol>		
@@ -714,15 +716,15 @@ background: transparent !important;
 						<%if(dakReceivedList!=null && dakReceivedList[23]!=null && dakReceivedList[6]!=null && dakReceivedList[6].toString().equalsIgnoreCase("DC")){ %>
 						   		<tr >
 								 <th style="padding: 8px;width:20%;" >Closing Comment </th>
-									<td  colspan="6" style="padding: 8px;" class="tabledata" id="closingcomment"></td>
+									<td  colspan="6" style="padding: 8px;" class="tabledata" id="closingcomment"><%=dakReceivedList[23].toString()%></td>
 								</tr>
 							<%} %>	
-							<%if(dakReceivedList!=null && dakReceivedList[6]!=null && dakReceivedList[6].toString().equalsIgnoreCase("DC")){ %>
+							<%-- <%if(dakReceivedList!=null && dakReceivedList[6]!=null && dakReceivedList[6].toString().equalsIgnoreCase("DC")){ %>
 								<tr >
 								 <th style="padding: 8px;width:20%;" >Closed By </th>
 									<td  colspan="6" style="padding: 8px;" class="tabledata" id="closedBy"></td>
 								</tr>
-							<%} %>
+							<%} %> --%>
 						</table>
 						<div class="row">
 						<label style="text-align: left; color:#114A86; margin-left:33px; font-size: 25px;">Link DAK</label>
@@ -804,6 +806,7 @@ background: transparent !important;
   	      <details>
 		      <summary role="button" tabindex="0" style="margin-left: 15px;">
  	        <span style="color: black; font-size: 18px;"><b>CW Reply</b> </span> <span class="spacercsw">&nbsp;</span>
+ 	        <span style="color: black" id="assignedRemarks"></span>
   	       </summary>
   	        <div class="content" style="margin-left: 15px;">
   	      <div class="CaseworkerDakReplyData" style="margin-left: 15px;" >  
@@ -2567,7 +2570,7 @@ if (result!==null && (result.trim()=='DD'  || result.trim()==='DA'  || result.tr
   //---------P&C DO Reply Preview Js  Starts--------------------/
 		 var logType = "<%= loginType %>";
 		 var PncType="<%=dakReceivedList[20]%>";
-		 if(result!==null && PncType!=null &&  PncType!="O" && result.trim()!='RM'  && ( result.trim()=='DC' || result.trim()=='AP' || result.trim()=='RP' || result.trim()=='FP' )   ){
+		 if(result!==null && PncType!=null &&  PncType=="P"  && result.trim()!='RM'  && ( result.trim()=='DC' || result.trim()=='AP' || result.trim()=='RP' || result.trim()=='FP' )   ){
 			 if(logType=="Z" || logType=="A" || logType=="E"){  //Authorized persons
 			 $(".pncDoReplyData").empty(); 
 			 $('.btnPNCDOReplyDetailsPreview').show();  
@@ -3665,6 +3668,7 @@ function dakCSWReplyPreview(dakId){
 					 var replyCSWData = JSON.parse(result); // Parse the JSON data
 					 $(".CaseworkerDakReplyData").empty();  
 					 const replyCSWCountOverall = parseInt( replyCSWData[0][16]);
+					 const assignedRemarks = replyCSWData[0][18];
 					 if(replyCSWCountOverall>0){
 		           		//display the hidden btnCWReplyDetailsPreview div 
 		            	$('.btnCWReplyDetailsPreview').show();
@@ -3683,6 +3687,8 @@ function dakCSWReplyPreview(dakId){
 						    var dakStatus = data[15];
 						    var DateTime=data[5];
 						    var ReplyStatus=data[17];
+						    var remarks = data[18];
+						    
 						 var date = new Date(DateTime);
 						 // Format the date and time
 						 var formattedDateTime = new Intl.DateTimeFormat('en-US', {
@@ -3747,6 +3753,22 @@ function dakCSWReplyPreview(dakId){
 
 						        var b = $("<b>").append($("<span>", { style: "color:#1176ab;font-size: 14px;" }).text("......"));
 						        replyCSWDiv.append(button, b);
+						    }
+						    if (remarks && remarks.trim() !== "") {
+						        var remarksDiv = $("<div>", {
+						            class: "assigned-remarks ",
+						            style: "margin-bottom: 10px; padding: 8px; background:#eef6ff; border-left: 3px solid #1176ab;"
+						        });
+
+						        var remarksLabel = $("<strong>", {
+						            text: "Assigned Remarks: ",
+						            style: "color: #1176ab;"
+						        });
+
+						        var remarksText = $("<span>").text(remarks);
+
+						        remarksDiv.append(remarksLabel, remarksText);
+						        formgroup1.append(remarksDiv);   // <-- add here BEFORE replyCSWDiv
 						    }
 				          formgroup1.append(replyCSWDiv);   
 				          innerCSWReplyDiv.append(formgroup1);

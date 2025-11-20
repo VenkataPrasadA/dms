@@ -521,6 +521,7 @@ textarea {
 									<th style="text-align: center;">Ref No & Date</th>
 									<th style="text-align: center;">Subject</th>
 									<th style="text-align: center;">Assigned By</th>
+									<th style="text-align: center;">Remarks</th>
 									<th style="text-align: center;">DAK Status</th>	
 									<th style="text-align: center;">Action</th>
 								</tr>
@@ -571,6 +572,7 @@ textarea {
 									<td class="wrap"  style="text-align: left;width:150px;"><%if(obj[2]!=null){ %><%=obj[2].toString() %><%}else{ %>-<%} %><br><%if(obj[6]!=null){%><%=sdf.format(obj[6])%><%}else{ %>-<%} %></td>
 									<td class="wrap"  style="text-align: left;width:180px;"><%if(obj[5]!=null){ %><%=obj[5].toString() %><%}else{ %>-<%} %></td>
 									<td class="wrap"  style="text-align: left;width:180px;"><%if(obj[12]!=null && obj[13]!=null){ %><%=obj[12].toString()+','+' '+ obj[13].toString()%><%}else{ %>-<%} %></td>
+									<td class="wrap"  style="text-align: left;width:180px;"><%if(obj[4]!=null){ %><%=obj[4].toString()%><%}else{ %>-<%} %></td>
 									<td class="wrap"  style="text-align: center;width:80px;">
 									<%if(obj[14]!=null) {%>
 									
@@ -649,6 +651,7 @@ textarea {
 									<th style="text-align: center;">Source</th>
 									<th style="text-align: center;">Ref No & Date</th>
 									<th style="text-align: center;">Assigned To</th>
+									<th style="text-align: center;">Remarks</th>
 									<th style="text-align: center;">DAK Status</th>
 								</tr>
 							</thead>
@@ -693,6 +696,7 @@ textarea {
 									<td class="wrap"  style="text-align: center;width:70px;"><%if(obj[3]!=null){ %><%=obj[3].toString() %><%}else{ %>-<%} %></td>
 									<td class="wrap"  style="text-align: left;width:150px;"><%if(obj[5]!=null){ %><%=obj[5].toString() %><%}else{ %>-<%} %><br><%if(obj[6]!=null){%><%=sdf.format(obj[6])%><%}else{ %>-<%} %></td>
 									<td class="wrap"  style="text-align: left;width:180px;"><%if(obj[2]!=null && obj[7]!=null){ %><%=obj[2].toString()+','+' '+ obj[7].toString()%><%}else{ %>-<%} %></td>
+									<td class="wrap"  style="text-align: left;width:180px;"><%if(obj[15]!=null){ %><%=obj[15].toString()%><%}else{ %>-<%} %></td>
 									<td class="wrap"  style="text-align: center;width:80px;">
 									<%if(obj[9]!=null) {%>
 									<%if(StatusCountAck!=null) {%>

@@ -3439,5 +3439,10 @@ public List<Object[]> selectedNewDakEmployees(long dakCreateId,String labCode) t
 public List<Object[]> closingAuthorityList() throws Exception {
 	return dao.closingAuthorityList();
 }
+
+@Override
+public List<Object[]> dakClosingList(String fromDate, String toDate, String statusValue, String userName) throws Exception {
+	return dao.dakClosingList(fromDate, toDate, statusValue, userName);
+}
 }
 

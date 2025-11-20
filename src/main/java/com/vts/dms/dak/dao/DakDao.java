@@ -299,5 +299,6 @@ public interface DakDao {
 	public Object[] SourceDetailData(String labCode) throws Exception;
 	public List<Object[]> selectedNewDakEmployees(long dakCreateId,String labCode) throws Exception;
 	public List<Object[]> closingAuthorityList() throws Exception;
+	public List<Object[]> dakClosingList(String fromDate, String toDate, String statusValue, String userName)throws Exception;
 	
 }

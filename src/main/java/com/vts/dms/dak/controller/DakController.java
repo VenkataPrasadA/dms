@@ -149,7 +149,6 @@ public class DakController {
 		}catch (Exception e) {
 			logger.error(new Date() +" In CONTROLLER DakInit.htm "+req.getUserPrincipal().getName()+"  "+e);
 			return "static/Error";
-			
 		}
 	}
 	
@@ -4174,6 +4173,10 @@ public class DakController {
 				redir.addAttribute("viewfrom", "DakPncDoList");
 				redir.addAttribute("DakId", req.getParameter("DakIdForClose"));
 				return "redirect:/DakReceivedView.htm";
+			}else if(MarkerDakCloseWithApproval!=null && MarkerDakCloseWithApproval.equalsIgnoreCase("DakClosingList")) {
+				redir.addAttribute("viewfrom", "DakClosingList");
+				redir.addAttribute("DakId", req.getParameter("DakIdForClose"));
+				return "redirect:/DakClosingList.htm";
 			}else {
 				return "redirect:/DakPNCDOList.htm";
 			}
@@ -7386,6 +7389,52 @@ public class DakController {
 			    }
 			} 
 
+			@RequestMapping(value = "DakClosingList.htm" , method = {RequestMethod.GET,RequestMethod.POST})
+			public String DakClosingList(HttpServletRequest req,HttpServletResponse resp,HttpSession ses) {
+				logger.info(new Date() +"DakClosingList.htm"+req.getUserPrincipal().getName());
+				try {
+					long EmpId=(Long)ses.getAttribute("EmpId");
+					String LoginType = (String)ses.getAttribute("LoginTypeDms");
+					Date date = new Date();
+					String fromDate=(String)req.getParameter("FromDate");
+					String toDate=(String)req.getParameter("ToDate");
+					String StatusValue = (String)req.getParameter("StatusFilterVal");
+				     if(StatusValue == null) {
+						StatusValue = "All";
+					}
+				     
+				    String SelectedTabVal = (String)req.getParameter("tabData");
+						if(SelectedTabVal==null) {
+							SelectedTabVal = "PendingPNCReply";
+						}
+				
+						 
+				     
+				     
+				     
+					Calendar cal = new GregorianCalendar(); cal.setTime(date);
+					cal.add(Calendar.DAY_OF_MONTH, -7); Date prevdate = cal.getTime();
+					if(fromDate==null || toDate == null) 
+					{
+						fromDate = new SimpleDateFormat("yyyy-MM-dd").format(prevdate);
+						toDate  = LocalDate.now().toString();
+					}else
+					{
+						fromDate=sdf2.format(rdf.parse(fromDate));
+						toDate=sdf2.format(rdf.parse(toDate));
+					}
+					req.setAttribute("frmDt", fromDate);
+					req.setAttribute("toDt",   toDate);
+					req.setAttribute("statusValue",   StatusValue);
+					req.setAttribute("selectedTabVal",   SelectedTabVal);
+					req.setAttribute("dakClosingList", service.dakClosingList(fromDate,toDate,StatusValue,req.getUserPrincipal().getName()));
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					return null;
+				}
+				return "dak/dakClosingList";
+			}
 
 			
 }
