@@ -350,6 +350,10 @@ public class DmsController {
 				}else if(DakMemberTypeId!=null && Emp.equalsIgnoreCase("All") || DakMemberTypeId!=null && Employee!=null){
 					req.setAttribute("EmployeeList", service.SelMemberTypeEmployeeList(MemberTypeId,lab));
 				}
+				
+				
+				System.out.println("fromDate:"+fromDate);
+				System.out.println("toDate:"+toDate);
 				req.setAttribute("ProjectCardsCount", service.ProjectCardsCount(fromDate,toDate));
 				req.setAttribute("GroupCardsCount", service.GroupCardsCount(fromDate,toDate));
 				req.setAttribute("DeliveryTypeId", Delivery);

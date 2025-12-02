@@ -666,7 +666,7 @@ background-image: linear-gradient(rgba(0,128,0, 0.5), rgba(0,128,0, 0.8) 50%)!im
 					<input type="hidden" name="${_csrf.parameterName}"	value="${_csrf.token}" />
 			
 						<input type="hidden" name="viewfrom" value="DakDirectorList">
-						<table class="table table-bordered table-hover table-striped table-condensed "   id="myTable2">
+						<table class="table table-bordered table-hover table-striped table-condensed"   id="myTable2">
 							<thead>
 								<tr>
 								    <th class="text-nowrap">Expand</th> 

@@ -596,7 +596,7 @@ String LabCode=(String)session.getAttribute("LabCode");
  				    onclick="return confirm('Are you sure to forward this DAK?');">
 				   <img alt="mark" src="view/images/forwardPNCReply.png"> 
  										  </button>	 			
- 	           <%} %>		  
+ 	           <%} %>		   
 				
 		 
 		<%}%> 

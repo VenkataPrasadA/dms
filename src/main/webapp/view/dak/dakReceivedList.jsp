@@ -418,6 +418,8 @@ Object[] Username=(Object[])request.getAttribute("Username");
 long EmpId =(Long)session.getAttribute("EmpId"); 
 String FileName =(String)request.getAttribute("FileName"); 
 List<Object[]> sourceList=(List<Object[]>)request.getAttribute("SourceList");
+String LabCode=(String)session.getAttribute("LabCode");
+System.out.println("LabCode:"+LabCode);
 %>
 <div class="page-wrapper">
 <div class="card-header page-top">
@@ -756,7 +758,7 @@ List<Object[]> sourceList=(List<Object[]>)request.getAttribute("SourceList");
  							 && obj[29]!=null && !obj[29].toString().equalsIgnoreCase("P")
  							 && obj[17]!=null && obj[17].toString().equalsIgnoreCase("Y") && obj[18]!=null
  							 && obj[26]!=null && obj[26].toString().equalsIgnoreCase("A") 
- 							 && obj[23]!=null && Long.parseLong(obj[23].toString())>0 
+ 							 && obj[23]!=null && Long.parseLong(obj[23].toString())>0 && !LabCode.equalsIgnoreCase("ADE")
  							 )
  								 
  							  
@@ -811,7 +813,7 @@ List<Object[]> sourceList=(List<Object[]>)request.getAttribute("SourceList");
  							 && obj[26]!=null && obj[26].toString().equalsIgnoreCase("A") 
  							 && obj[23]!=null && Long.parseLong(obj[23].toString())>0 
  							 && obj[30]!=null && Long.parseLong(obj[30].toString())>0
- 							 && Long.parseLong(obj[30].toString())==EmpId
+ 							 && Long.parseLong(obj[30].toString())==EmpId && !LabCode.equalsIgnoreCase("ADE")
  							 )
  								 
  							  
@@ -2485,7 +2487,7 @@ function CSWReplyOfParticularMarkerPreview(DakMarkingId,DakId,loggedInEmpId){
 					          formgroup1.append(replyCSWDiv);   
 					          innerCSWReplyDiv.append(formgroup1);
 					          dynamicCSWReplyDiv.append(innerCSWReplyDiv);
-
+ 
 					            // Check if row[7] count i.e DakReplyAttachCount is more than 0
 						          if (data[7] > 0) {
 						        	  // Call a function and pass row[2] i.e DakAssignReplyId

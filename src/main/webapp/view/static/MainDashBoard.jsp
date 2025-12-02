@@ -446,6 +446,16 @@ List<Object[]> dakDeliveryList = (List<Object[]>) request.getAttribute("DakDeliv
 List<Object[]> priorityList = (List<Object[]>) request.getAttribute("priorityList");
 Object[] ProjectCardsCount=(Object[])request.getAttribute("ProjectCardsCount");
 
+System.out.println("ProjectCardsCount[0]:"+ProjectCardsCount[0].toString());
+System.out.println("ProjectCardsCount[1]:"+ProjectCardsCount[1].toString());
+System.out.println("ProjectCardsCount[2]:"+ProjectCardsCount[2].toString());
+System.out.println("ProjectCardsCount[3]:"+ProjectCardsCount[3].toString());
+System.out.println("ProjectCardsCount[4]:"+ProjectCardsCount[4].toString());
+System.out.println("ProjectCardsCount[5]:"+ProjectCardsCount[5].toString());
+System.out.println("ProjectCardsCount[6]:"+ProjectCardsCount[6].toString());
+System.out.println("ProjectCardsCount[7]:"+ProjectCardsCount[7].toString());
+System.out.println("ProjectCardsCount[8]:"+ProjectCardsCount[8].toString());
+
 List<Object[]> todayschedulelist=(List<Object[]>)request.getAttribute("todayschedulelist");
 
 ObjectMapper objectMapper = new ObjectMapper();
