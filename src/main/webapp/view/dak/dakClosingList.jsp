@@ -634,7 +634,7 @@ textarea {
 															<img alt="mark" src="view/images/preview3.png">
  										  </button>
  <!---------------------------------Preview Action code End --------------------------------------------------------------------------------------------------------->		
- 								   <%if(obj[17]!=null && Long.parseLong(obj[17].toString())>0){ %>
+ 								   <%if(obj[5]!=null && !obj[5].toString().equalsIgnoreCase("DC") && obj[17]!=null && Long.parseLong(obj[17].toString())>0){ %>
  								   <input type="hidden" name="DakNoToClose_<%=obj[0]%>"	value="<%=obj[8] %>" />	
  									<button type="button" class="btn btn-sm icon-btn" 
  									data-toggle="tooltip" data-placement="top" data-original-title="Dak Close" 
@@ -642,7 +642,7 @@ textarea {
                                      <img alt="mark" src="view/images/dakClose.png"> 
  									</button>	
  								   <%} %>
-  		 <input type="hidden" name="DakNo_<%=obj[0]%>"	value="<%=obj[8]%>" />	 <!-- commonInputTypeHidden -->								
+  		 							<input type="hidden" name="DakNo_<%=obj[0]%>"	value="<%=obj[8]%>" />	 <!-- commonInputTypeHidden -->								
  												
 									</td> 
                                                     
